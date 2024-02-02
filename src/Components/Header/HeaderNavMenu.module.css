@@ -1,0 +1,14 @@
+.navmenu{
+    display: flex;
+    align-items: center;
+    gap: 64px;
+     
+  }
+
+  .link{
+cursor: pointer;
+  }
+
+  .link:hover{
+    text-decoration: underline;
+  }

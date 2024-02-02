@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Footer from './Components/Footer/Footer';
+import HeaderContainer from './Components/Header/HeaderContainer';
+import { Suspense } from 'react';
+import Preloader from './Components/common/Preloader/Preloader';
+import ProfileContainer from './Components/Profile/ProfileContainer';
+import DialogsContainer from './Components/Dialogs/DialogsContainer';
+import NavbarContainer from './Components/Navbar/NavbarContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className='app-wrapper'>
+      
+        <HeaderContainer /> 
+        <div className='container'>
+          <NavbarContainer className='navbar'/>
+          <div className='app-wrapper-content'>
+      <Suspense fallback={<Preloader />}>
+        <Routes>
+        <Route path="profile" element={<ProfileContainer />} />
+        <Route path="dialogs" element={<DialogsContainer />} />
+        </Routes>
+      </Suspense>
+      </div>
+      </div>
+      <Footer />
     </div>
+  </BrowserRouter>
   );
 }
 
