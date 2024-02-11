@@ -39,6 +39,9 @@ a {
   margin-bottom: 16px;
 }
 
+
+
+
 .item:hover * {
   background-color: #F5F5F5;
   fill: #707070;
@@ -60,3 +63,22 @@ a {
 .activeLink .icon * {
   fill: #1F1F1F;
 }
+
+@media  (max-width: 1279px){
+  .item {width:fit-content;
+  }
+  .item:hover  * {
+    background-color: white;
+  }}
+
+  .disabled a{
+    color: #D6D6D6;
+    font-size: large;
+  }
+
+  .disabled *{
+    fill: #D6D6D6;
+  }
+  .disabled{
+    pointer-events: none;
+  }

@@ -1,9 +1,9 @@
 import s from './Footer.module.css';
 
 const Footer = () => {
-    return <div className={s.footer}>
+    return <footer className={s.footer}>
         <div>Подвал на реконструкции</div>
-          </div>
+          </footer>
 }
 
 export default Footer;

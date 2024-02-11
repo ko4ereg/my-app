@@ -1,2 +1,174 @@
+.profile {
+    padding-top: 40px;
+    display: flex;
+    gap: 24px;
+font-size: 24px;
+font-weight: 500;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: left;
+position: relative;
+color: #1F1F1F;
+margin-bottom: 32px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.editProfile{
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+.profile img{
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    
+}
+
+.location{
+    display: flex;
+    gap: 16px;
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+}
 
  
+.city{
+    color: #474747;
+}
+ 
+.dot {
+    position: relative;
+    width: 8px;
+
+}
+.dot::after{
+    content: "";
+    display: flex;
+    height: 0.25rem;
+    width: 0.25rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #474747;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+     
+}
+
+.aboutMe{
+font-size: 16px;
+line-height: 20px;
+color: #707070;
+}
+.profileButtons{
+    display: flex;
+    gap: 8px;
+     align-items: center;
+      
+}
+.contacts{
+    margin-bottom: 24px;
+    display: flex;
+    gap: 10px;
+}
+.socials{
+     max-width: 40px;
+     max-height: 40px;
+  
+}
+
+
+.profileButtons{
+height: 36px;
+padding: 8px, 16px, 8px, 16px;
+font-size: 16px;
+font-weight: 600;
+}
+
+.recordButton{
+background-color: #198754;
+width: fit-content;
+}
+
+.recordButton:hover{
+    background-color: #359569;
+}
+
+.writeButton:hover{
+   background-color: #474747;
+} 
+
+.editProfile {
+    cursor: pointer;
+}
+
+.icon * {
+    fill: #999999;
+     
+  }
+  
+   .editProfile:hover .icon *{
+    fill: #707070;
+   } 
+  
+   .editProfile:active .icon * {
+    fill:  #474747;
+   }
+
+   .profile button{
+    width: 214px;
+    height: 36px;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0;
+gap: 4px;
+   }
+
+   .profile button img{
+     width: 24px;
+    height: 24px;
+}
+
+.emptyProfile{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.userPhoto{
+     cursor: pointer;
+}
+
+ 
+.mainPhotoContainer {
+position: relative;
+}
+ .emptyPhotoInput{
+    display: none;
+ }
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: #EBEBEB;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+.mainPhotoContainer:hover .overlay {
+    opacity: 1;
+  }

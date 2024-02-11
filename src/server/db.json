@@ -1,0 +1,33 @@
+{"api":
+{
+    "users": [
+     {"id": "1",
+     "fullName" : "Валентина Серпухова",
+     "location" : "Екатеринбург",
+     "services" : "Маникюр, педикюр",
+     "aboutMe" : "Люблю ноготочки, это мое все"
+
+
+     },
+     {"id": "2",
+     "fullName" : "Валентина Рубцова",
+     "location" : "Екатеринбург",
+     "services" : "педикюр",
+     "aboutMe" : "Люблю ноготочки только на ногах, это мое все"
+
+
+     }
+    ],
+    "posts": [
+      { "id": "1", "title": "a title", "views": 100 },
+      { "id": "2", "title": "another title", "views": 200 }
+    ],
+    "comments": [
+      { "id": "1", "text": "a comment about post 1", "postId": "1" },
+      { "id": "2", "text": "another comment about post 1", "postId": "1" }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
+}

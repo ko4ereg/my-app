@@ -1,0 +1,23 @@
+.item{
+   display: flex;
+   justify-content: space-between;
+width: 100%;
+margin-bottom: 8px;
+}
+
+.title{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.title::after{
+     width: 100%;
+    content: '';
+    position: absolute;  
+    bottom: 0;
+    border-bottom: 1px dotted black;
+}
+
+
+ 

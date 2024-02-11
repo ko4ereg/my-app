@@ -1,5 +1,5 @@
 const DialogsContainer = () => {
-    return <div>AAAA</div>
+    return <div>ЛЮБЛЮ КИСОНЬКУ ВАНЮЧКЮ</div>
 }
 
 export default DialogsContainer;

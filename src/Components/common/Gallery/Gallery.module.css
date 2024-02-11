@@ -1,0 +1,45 @@
+ 
+ .image {
+   
+   object-fit: cover;
+   cursor: pointer;
+ }
+ .image img{
+   max-width: 800px;
+   max-height: 800px;
+ }
+
+ .iconClose{
+   position: absolute;
+   top: 0;
+   right: 0;
+   cursor: pointer;
+   padding: 16px 24px 8px 0px;
+ }
+
+ .content{
+   display: flex;
+   justify-content: center;
+   height: 100%;
+ }
+.bottomGallery{
+   display: flex;
+   justify-content: center;
+}
+ .deleteButton{
+   display: flex;
+   align-items: center;
+   color: #DC3545;
+   
+   cursor: pointer;
+   margin-top: 20px;
+    
+ }
+ .button{
+   cursor: pointer;
+   padding: 0px 36px;
+   min-height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }

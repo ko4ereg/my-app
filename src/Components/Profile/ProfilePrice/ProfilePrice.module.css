@@ -1,0 +1,170 @@
+.titleBlock {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1F1F1F;
+    min-width: 144px;
+}
+
+.block {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #999999;
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+   
+}
+
+.profilePrice {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.priceBlock {
+    width: 100%;
+}
+
+.pricingList {
+    width: 100%;
+    max-height: 100px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.pricingListContainer{
+width: 100%;
+}
+
+.pricingListBottom {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 46.9%, #FFF 100%);
+    width: 100%;
+    height: 2.5rem;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.readmorechecker {
+    opacity: 0;
+    position: absolute;
+}
+
+.readmorebutton{
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;   
+    margin-top: 0.5rem;
+    min-width: 54px;
+    position: relative;
+    color: #999999;
+    height: 32px;
+  }
+  
+.readmorechecker:checked ~ .pricingList {
+    max-height:  none;
+}
+
+.readmorechecker:checked ~ .pricingList .pricingListBottom {
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .readmorechecker ~ .readmorebutton::before {
+    content: "Все";
+    position: absolute;
+    left: 0;
+  }
+
+  .readmorechecker ~ .readmorebutton::after {
+    content: "";
+    background: url(./../../../assets/icons/down.svg) right;
+    position: absolute;
+    right: 0px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .readmorechecker:checked ~ .readmorebutton {
+    width: 98px;
+  }
+
+  .readmorechecker:checked ~ .readmorebutton:before {
+    content: "Свернуть";
+    position: absolute;
+    left: 0;
+  }
+
+  .readmorechecker:checked ~ .readmorebutton::after {
+    content: "";
+    background: url(./../../../assets/icons/up.svg) right;
+    position: absolute;
+    right: 0px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .priceBlock span{
+color: #999999;
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: center;
+
+  }
+  .button{
+    width: 302px;
+    height: 36px;
+   color: #1F1F1F;
+   font-weight: 600;
+border: 0.5px solid black;
+ font-size: 14px;
+display: flex;
+align-items: center;
+line-height: 20px;
+background-color: white;
+  }
+
+  .button img{
+    width: 24px;
+height: 24px;
+padding: 4px;
+
+  }
+
+  .button:hover{
+    background-color: #EBEBEB;
+  }
+
+  .pricingListEmptyContainer{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin: 0 auto; 
+gap: 8px;}
+
+
+.icon * {
+  fill: #999999;
+}
+
+ .block:hover .icon *{
+  fill: #707070;
+ } 
+
+ .block:active .icon * {
+  fill:  #474747;
+ }

@@ -1,0 +1,91 @@
+ .modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: #0000008F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     opacity: 0;
+     pointer-events: none;
+     transition: 0.5s;
+ }
+
+ .active{
+    height: 100vh;
+    width: 100vw;
+    background-color: #0000008F;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    opacity: 1;
+    transition: 0.5s;
+    pointer-events: all;
+  
+ }
+
+ .modalContent{
+padding: 18px 24px 12px 24px; 
+ background-color: white;
+border-radius: 4px ;
+ 
+ 
+ }
+
+ .modalGallery{
+   height: 100vh;
+   width: 100vw;
+   background-color:  #000000CC; 
+
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+ }
+
+ .activeGallery{
+   height: 100vh;
+   width: 100vw;
+   background-color: #000000CC; 
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   opacity: 1;
+   transition: 0.5s;
+   pointer-events: all;
+ }
+
+ .modalGalleryContent{
+position: relative;
+width: 100%;
+margin: 0 auto;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+ }
+
+ .iconClose{
+   position: absolute;
+   top: 0;
+   right: 0;
+ }
+
+ 

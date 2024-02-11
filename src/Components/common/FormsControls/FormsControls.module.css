@@ -1,0 +1,28 @@
+ 
+ .formControl.error input,
+ .formControl.error textarea {
+border: 3px solid red;
+ }
+
+  
+ .formControl.error span {
+    color: red;
+ }
+
+ .formControl {
+    width: 100%;
+ }
+ .formControl textarea {
+    width: 100%;
+ }
+
+ .formsummarycontrol {
+   border: 3px solid red;
+   padding: 5px;
+   color: brown;
+   width: fit-content;
+ }
+
+ .errorpic{
+   width: 20px;
+ }

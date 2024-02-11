@@ -1,0 +1,19 @@
+.item{
+   display: flex;
+   justify-content: space-between;
+width: 200px;
+margin-bottom: 8px;
+cursor: pointer;
+}
+
+.item img{
+    width: 194px;
+    height: 194px;
+    object-fit: cover;
+}
+
+.item:hover{
+    opacity: 0.8;
+} 
+
+ 

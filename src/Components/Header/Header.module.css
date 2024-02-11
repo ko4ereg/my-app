@@ -44,7 +44,7 @@ input {
   
 } 
 
-input:focus, input:hover, label:focus-within, label:hover{
+input:focus, input:hover, .label:focus-within, .label:hover{
   background-color: #F5F5F5;
 } 
 
@@ -62,17 +62,7 @@ input:focus::placeholder {
    transition: opacity 0.3s ease;
 }
  
-label{
-  height: 32px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #fff;
-  max-width: 198px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  padding: 0px 8px 0px;
-}
+
 
 button{
   height: 36px;
@@ -83,7 +73,10 @@ button{
   border: none;
   cursor: pointer;
 } 
-   
+ 
+button:hover{
+  background-color: #474747;
+}
  
  
  

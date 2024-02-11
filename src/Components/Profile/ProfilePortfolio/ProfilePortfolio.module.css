@@ -1,0 +1,101 @@
+.titleBlock {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1F1F1F;
+    min-width: 144px;
+}
+
+.block {
+  display: flex;
+  align-items: center;
+ 
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+    color: #999999;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.profilePortfolio {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.portfolioContainer{
+width: 100%;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 1rem;
+flex: 0 1 100%;
+grid-auto-flow: row;
+
+}
+
+  .portfolioBlock span{
+color: #999999;
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: center;
+  }
+
+  .button{
+    width: 302px;
+    height: 36px;
+   color: #1F1F1F;
+   font-weight: 600;
+border: 0.5px solid black;
+ font-size: 14px;
+background-color: #fff;
+display: flex;
+align-items: center;
+line-height: 20px;
+  }
+
+.icon * {
+  stroke: #999999;
+}
+
+ .block:hover .icon *{
+  stroke: #707070;
+ } 
+
+ .block:active .icon * {
+  stroke:  #474747;
+ }
+
+  .portfolioListEmptyContainer{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin: 0 auto; 
+gap: 8px;}
+
+
+.button:hover{
+  background-color: #EBEBEB;
+}
+
+.button{
+  width: 229px;
+  height: 36px;
+ color: #1F1F1F;
+ font-weight: 600;
+border: 0.5px solid black;
+font-size: 14px;
+display: flex;
+align-items: center;
+line-height: 20px;
+background-color: white;
+}
+
+.inputPhotoPortfolio{
+display: none;
+}

@@ -1,0 +1,43 @@
+import { useDispatch, useSelector } from 'react-redux';
+import HeaderLogin from './HeaderLogin';
+import { useEffect, useRef, useState } from 'react';
+import { login, logout } from '../../../redux/auth-reducer';
+
+
+const HeaderLoginContainer = (props) => {
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const userPhoto = useSelector(state => state.profilePage.profile.photo);
+  const [isOpen, setOpen] = useState(false);
+  const externalRef = useRef(null);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (externalRef.current && !externalRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickLogout = () => {
+    dispatch(logout());
+  }
+  const handleClickLogin = () => {
+    dispatch(login());
+  }
+
+  return (
+    <div ref={externalRef} onClick={() => { setOpen(!isOpen) }}>
+      <HeaderLogin handleClickLogout={handleClickLogout}
+        handleClickLogin={handleClickLogin}
+        setOpen={setOpen}
+        isOpen={isOpen} userPhoto={userPhoto} isAuth={isAuth} />
+    </div>
+  )
+}
+
+export default HeaderLoginContainer;

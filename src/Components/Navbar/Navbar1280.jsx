@@ -16,27 +16,27 @@ const Navbar = (props) => {
     
     return (
         <nav className= {s.nav}>
-           <div className={s.items} > 
+             {props.isAuth && <div className={s.items} > 
            <div className={s.item} >
                 <NavLink to='/profile' className={navActive}><IconProfile className={s.icon} /> Профиль</NavLink>
             </div>
             <div className= {s.item}>
                 <NavLink to='/blog' className={navActive}  ><IconBlog className={s.icon} />Блог</NavLink>
             </div>
-            <div className= {s.item}>
+            <div className= {s.item + ' ' + s.disabled}>
                 <NavLink to='/dialogs' className={navActive}  ><IconDialogs className={s.icon} /> Чаты</NavLink>
             </div>
-            <div className= {s.item}>
+            <div className= {s.item + ' ' + s.disabled}>
                 <NavLink to='/feedbacks' className={navActive}> <IconFeedbacks className={s.icon} /> Отзывы</NavLink>
             </div>
-            <div className= {s.item}>
+            <div className= {s.item + ' ' + s.disabled}>
                 <NavLink to='/statistic' className={navActive} ><IconStatistics className={s.icon}/>Статистика</NavLink>
             </div>
-            <div className= {s.item}>
+            <div className= {s.item + ' ' + s.disabled}>
                 <NavLink to='/integrations' className={navActive} > <IconIntegrations className={s.icon}/> Интеграции</NavLink>
             
             </div>
-            </div>
+            </div>}
         </nav>)
 }
 

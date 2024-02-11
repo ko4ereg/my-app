@@ -1,0 +1,169 @@
+ 
+ .icon {
+    width: 24px;
+cursor: pointer;
+ }
+
+ .icon *{
+    stroke: #999999;
+ }
+
+ .modal{
+    max-height: 696px;
+  position: relative;
+ }
+
+ .modalTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Comfortaa;
+font-size: 20px;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+ 
+
+     
+ }
+
+ .form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 24px 10px 0;
+    margin-right: -24px;
+    width: 632px;
+    max-height: 596px;
+    overflow-y: scroll;
+     
+    
+ }
+
+
+
+ .form input{
+    width: 100%;
+    max-width: 426px;
+    max-height: 44px;
+   border-bottom: 1px solid #999999;
+font-size: 16px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+padding: 12px 0px 8px 0px;
+
+ }
+ 
+ .form input:hover {
+   border-bottom: 1px solid #1F1F1F;
+  
+ }
+
+ .formItem{
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ .formItem span {
+ 
+font-size: 16px;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+max-width: 132px;
+ 
+ }
+
+ .formItemContacts{
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+ }
+.contacts{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 426px;
+}
+ .formItemContacts span{
+    align-self: flex-start;
+    font-size: 16px;
+font-weight: 700;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+max-width: 132px;
+ }
+
+ .form textarea{
+    width: 100%;
+    max-width: 426px;
+    max-height: 76px;
+   border: none;
+   border-bottom: 1px solid #999999;
+font-size: 16px;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+padding: 12px 0 8px 0;
+resize: none;
+ }
+
+  .button{
+    width: 100%;
+   margin: 12px 0px 12px 0px;
+   display: block;
+   margin: 0 auto;
+
+ }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D6D6D6 #FFFFFF;
+}
+
+.form  input.error, .form textarea.error    {
+    border-bottom: 1px solid red;
+   
+    }
+
+    .form textarea.error {
+      max-height: 76px;
+    }
+
+    .selector{
+        width: 100%;
+        width: 100%;
+        max-width: 426px;
+        max-height: 44px;
+       border-bottom: 1px solid #999999;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+     
+    }
+    
+  .error{
+      width: 100%;
+      width: 100%;
+      max-width: 426px;
+      max-height: 44px;
+     border-bottom: 1px solid red;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+    }

@@ -7,8 +7,28 @@
 
   .link{
 cursor: pointer;
+text-decoration: underline;
+color: #707070;
   }
 
   .link:hover{
-    text-decoration: underline;
+    text-decoration: none;
+    color: #474747;
   }
+
+  .label{
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff;
+    max-width: 198px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 0px 8px 0px;
+    cursor: pointer;
+  }
+
+  .label:focus-within, .label:hover{
+    background-color: #F5F5F5;
+  } 
