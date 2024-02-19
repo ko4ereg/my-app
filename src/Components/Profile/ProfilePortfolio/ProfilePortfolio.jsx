@@ -12,7 +12,7 @@ const ProfilePortfolio = (props) => {
     const imagesArray = useSelector(state => state.profilePage.profile.portfolio);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const dispatch = useDispatch();
-    const [images, setImagesArray] = useState(imagesArray)
+    const [images, setImagesArray] = useState(imagesArray || [])
  
     const onPhotoPortfolioSelected = (e) => {
         if (e.target.files.length) {
@@ -22,10 +22,11 @@ const ProfilePortfolio = (props) => {
     }
 
     useEffect(() => {
-        setImagesArray(imagesArray)
+        setImagesArray(imagesArray || []);
       }, [imagesArray]);
       
- 
+      
+    
     const handleClick = (index)=>{
         setCurrentImageIndex(index);
         setModalGalleryActive(true);
@@ -83,6 +84,7 @@ const ProfilePortfolio = (props) => {
          currentImageIndex={currentImageIndex}
          isAuth={props.isAuth}
          handleClickonImage={handleClickonImage}
+      
          />
         </ModalGallery>
         

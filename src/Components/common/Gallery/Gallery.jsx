@@ -5,9 +5,7 @@ import deleteIcon from './../../../assets/icons/delete.svg';
 import s from './Gallery.module.css';
 
 const Gallery = (props) => {
- 
- 
-    return (<div className={s.gallery} onClick={ (e) => {e.stopPropagation()}}> 
+    return (<div className={s.gallery}  onClick={ (e) => {e.stopPropagation()}}> 
      <IconClose onClick={() => props.setModalGalleryActive(false)} className={s.iconClose} /> 
     <div className={s.content} >
     {props.currentImageIndex > 0 && <div onClick={props.handlePrevImage} className={s.button} ><img src={leftIcon} alt="" /></div> } 

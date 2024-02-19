@@ -1,6 +1,7 @@
 import { combineReducers, configureStore,   } from "@reduxjs/toolkit";
 import profileReducer from "./profile-reducer";
 import authReducer from "./auth-reducer";
+import appReducer from "./app-reducer";
  
  
  
@@ -8,7 +9,7 @@ import authReducer from "./auth-reducer";
 let reducers = combineReducers({
     profilePage : profileReducer,
     auth : authReducer,
-    
+    app: appReducer,
 });
 
 export let store = configureStore({

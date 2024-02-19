@@ -7,42 +7,19 @@ const DELETE_MAIN_PHOTO = 'DELETE_MAIN_PHOTO';
 const UPDATE_MAIN_PHOTO = 'UPDATE_MAIN_PHOTO';
 
 let initialState = {
-    posts: [
-        { id: 2, message: "I'm not gay!", likescount: 100 },
-        { id: 1, message: "Hello!", likescount: 0 },
-    ],
+    posts: null,
     profile: {
-        id: 1,
-        name: "Валентина Рубцова",
-        city: "Екатеринбург",
-        services: ["Педикюр", "Массаж"],
-        aboutMe: "Люблю ноготочки только на ногах, это мое все",
-        contacts: {
-            instagram: "instagram.com",
-            whatsapp: "+79850",
-            telegram: "@ass",
-            tiktok: "tiktok.com",
-            vk: "vk.com"
-
-        },
-
-        photo:  "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg",
-        // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"
-        pricing: [
-            { id: 1, title: 'Педикюр', price: 1000, },
-            { id: 2, title: 'Педикюр мужчинам', price: 2000, },
-            { id: 3, title: 'Массаж ног', price: 3000, },
-
-        ],
-        portfolio: [
-            'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-27.jpg',
-            'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-26.jpg',
-            'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-25.jpg',
-            'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-24.jpg',
-        ]
-    },
+        id: null,
+        name: null,
+        city: null,
+        services: null,
+        aboutMe: null,
+        contacts: null},
+    photo: null,
+    // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"
+    pricing: null,
+    portfolio: null,
     status: '',
-
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -109,8 +86,8 @@ export const saveProfileData = (profile, services) => ({ type: SAVE_PROFILE_DATA
 export const savePriceData = (price) => ({ type: SAVE_PRICE_DATA, price });
 export const saveUpdatedGallery = (portfolio) => ({ type: SAVE_UPDATED_GALLERY, portfolio })
 export const savePhotoGallery = (photo) => ({ type: SAVE_PHOTO_GALLERY, photo })
-export const deleteMainPhoto = () => ({type: DELETE_MAIN_PHOTO})
-export const updateMainPhoto = (photo) => ({type: UPDATE_MAIN_PHOTO, photo})
+export const deleteMainPhoto = () => ({ type: DELETE_MAIN_PHOTO })
+export const updateMainPhoto = (photo) => ({ type: UPDATE_MAIN_PHOTO, photo })
 // export const getUserProfile = (userId) => async (dispatch) => {
 //     let response = await usersAPI.getProfile(userId);
 //     dispatch(setUserProfile(response.data));
@@ -151,3 +128,43 @@ export const updateMainPhoto = (photo) => ({type: UPDATE_MAIN_PHOTO, photo})
 //   }
 
 export default profileReducer;
+
+
+// let initialState = {
+//     posts: [
+//         { id: 2, message: "I'm not gay!", likescount: 100 },
+//         { id: 1, message: "Hello!", likescount: 0 },
+//     ],
+    // profile: {
+    //     id: 1,
+    //     name: "Валентина Рубцова",
+    //     city: "Екатеринбург",
+    //     services: ["Педикюр", "Массаж"],
+    //     aboutMe: "Люблю ноготочки только на ногах, это мое все",
+    //     contacts: {
+    //         instagram: "instagram.com",
+    //         whatsapp: "+79850",
+    //         telegram: "@ass",
+    //         tiktok: "tiktok.com",
+    //         vk: "vk.com"
+
+    //     },
+
+//         photo: "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg",
+//         // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"
+//         pricing: [
+//             { id: 1, title: 'Педикюр', price: 1000, },
+//             { id: 2, title: 'Педикюр мужчинам', price: 2000, },
+//             { id: 3, title: 'Массаж ног', price: 3000, },
+
+//         ],
+//         portfolio: [
+//             'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-27.jpg',
+//             'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-26.jpg',
+//             'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-25.jpg',
+//             'https://sunlight.net/wiki/wp-content/uploads/2022/08/Manikyur-dlya-ofisa-24.jpg',
+//         ]
+//     },
+//     status: '',
+
+// };

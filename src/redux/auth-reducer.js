@@ -1,56 +1,101 @@
 // import { authAPI, securityAPI } from "../api/api";
 
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authAPI } from "../api/api";
+import { db } from "../firebase";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
 const GET_CAPTCHA_URL_SUCCES = 'GET_CAPTCHA_URL_SUCCES';
 const SET_ISAUTH_TRUE = 'SET_ISAUTH_TRUE';
-const SET_ISAUTH_FALSE = 'case SET_ISAUTH_FALSE';
+const LOGOUT_SUCCES = 'LOGOUT_SUCCES';
 
 
 let initialState = {
-    userid: null,
+    userId: null,
     email: null,
-    login: null,
-    isAuth: true,
-    userPhoto: null,
-    captchaUrl: null,
+    name: null,
+    isAuth: false,
+    // userPhoto: null,
 };
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
-        case GET_CAPTCHA_URL_SUCCES:
             return {
                 ...state,
                 ...action.payload,
-
-
             }
-        case SET_USER_PHOTO:
+        case LOGOUT_SUCCES:
             return {
                 ...state,
-                ...action.userPhoto,
-                ...action.userId,
-            }
-        case SET_ISAUTH_FALSE:
-            return{
-                ...state,
+                userId: null,
+                email: null,
+                name: null,
                 isAuth: false
-            }    
-        case SET_ISAUTH_TRUE:
-                return{
-                    ...state,
-                    isAuth: true
-                }      
-
+            }
         default:
             return state;
     }
 }
 
+export const setAuthUserData = (userId, email, name, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, name, isAuth } });
+export const logoutSucces = () => ({ type: LOGOUT_SUCCES })
 
-export const logout = () => ({type: SET_ISAUTH_FALSE}) 
-export const login = () => ({type: SET_ISAUTH_TRUE}) 
+export const getAuthUserData = () => {
+    return async (dispatch) => {
+        let response = await authAPI.authMe();
+        if (response.currentUser) {
+            const { currentUser } = response;
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("uid", "==", currentUser.uid));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                const id = doc.data().id;
+                dispatch(setAuthUserData(id, currentUser.email, currentUser.displayName, true));
+            });
+
+        }
+    }
+}
+
+
+export const login = (email, password) => {
+    return async (dispatch) => {
+        const userCredential = await authAPI.login(email, password);
+        dispatch(getAuthUserData());
+    }
+}
+
+
+export const registrate = (email, password) => {
+    return async (dispatch) => {
+        const userCredential = await authAPI.registrate(email, password);
+        dispatch(getAuthUserData());
+    }
+}
+
+
+export const logout = () => {
+    return async dispatch => {
+        try {
+            await authAPI.logout();
+            dispatch(logoutSucces())
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+// export const handleLogin = (email, password) => {
+//     return (dispatch) => {
+//       authAPI.login(email, password)
+//         .then(user => {
+//           console.log(user);
+//           dispatch(setAuthUserData(user));
+//         });
+//     }
+//   }
 
 // export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
 // export const setAuthUserPhoto = (userPhoto) => ({ type: SET_USER_PHOTO, data: { userPhoto } });

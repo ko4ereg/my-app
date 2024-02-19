@@ -36,6 +36,7 @@ const ProfileDataForm = (props) => {
    
 
     const submit = data => {
+        console.log(data);
         const services = value.map((value) => value);
         const updatedUser = { ...userProfile, ...data };
         if (value.length > 0) {
@@ -69,11 +70,11 @@ const ProfileDataForm = (props) => {
             <div className={s.formItemContacts} >
                 <span>Контакты</span>
                 <div className={s.contacts}>
-                    <input name='contacts.instagram' placeholder='instagram http://instagram.com/' type="text" {...register('contacts.instagram')} />
-                    <input name='contacts.whatsapp' placeholder='whatsapp +7(XXX)-XX-XX-XXX' type="tel"   {...register('contacts.whatsapp')} />
-                    <input name='contacts.telegram' placeholder='telegram @Ваше Имя' type="text" {...register('contacts.telegram')} />
+                    <input name='contacts.instagram' placeholder='instagram' type="text" {...register('contacts.instagram')} />
+                    <input name='contacts.whatsapp' placeholder='whatsapp  7(XXX)-XX-XX-XXX' type="tel"   {...register('contacts.whatsapp')} />
+                    <input name='contacts.telegram' placeholder='telegram Ваше_Имя' type="text" {...register('contacts.telegram')} />
                     <input name='contacts.tiktok' placeholder='tiktok' type="text" {...register('contacts.tiktok')} />
-                    <input name='contacts.vk' placeholder='vk http://vk.com/id' type="text" {...register('contacts.vk')} />
+                    <input name='contacts.vk' placeholder='Ваш id' type="text" {...register('contacts.vk')} />
                 </div>
             </div>
         </form>

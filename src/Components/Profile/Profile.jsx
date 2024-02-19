@@ -4,20 +4,25 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import ProfilePrice from './ProfilePrice/ProfilePrice';
 import ProfilePortfolio from './ProfilePortfolio/ProfilePortfolio';
 import Skeleton from '../common/Skeleton/Skeleton';
+import { useEffect, useState } from 'react';
 
  
 
 const Profile = (props) => {
    const isAuth = useSelector(state => state.auth.isAuth);
-
+   const [showSkeleton, setShowSkeleton] = useState(true);
     const userData = useSelector(state => state.profilePage.profile);
-    // if (!props.profile) {
-    //     return <Preloader />
-    // }  
-
-    // if(isAuth) {
-    //     return  <Skeleton />
-    // }
+ 
+    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setShowSkeleton(false);
+        }, 1000); 
+        return () => clearTimeout(timer);  
+      }, []);
+      if(showSkeleton) {
+        return  <Skeleton />
+    }
 
     return (
         <div >

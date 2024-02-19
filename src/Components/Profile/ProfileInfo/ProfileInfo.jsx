@@ -84,29 +84,37 @@ const ProfileData = (props) => {
 
         <div className={s.aboutMe}> {props.props.aboutMe} </div>
 
-        <div className={s.contacts}> {Object.entries(props.props.contacts).map(([title, value]) => {
-            return <Contact key={title} contactTitle={title} contactValue={"http://" + value} />
-        }
-        )}   </div>
+        <div className={s.contacts}> 
+        {props.props.contacts.instagram &&   <div>  <NavLink to={`http://instagram.com/${props.props.contacts.instagram}`}> <img className={s.socials} src={instagram} alt="" />  </NavLink>
+     </div>}
+        {props.props.contacts.whatsapp &&   <div>  <NavLink to={`http://wa.me/${props.props.contacts.whatsapp}`}> <img className={s.socials} src={whatsapp} alt="" />  </NavLink>
+     </div>}
+        {props.props.contacts.telegram &&   <div>  <NavLink to={`http://t.me/${props.props.contacts.telegram}`}> <img className={s.socials} src={telegram} alt="" />  </NavLink>
+     </div>}
+        {props.props.contacts.tiktok && <div>   <NavLink to={`http://tiktok.com/${props.props.contacts.tiktok}`}> <img className={s.socials} src={tiktok} alt="" />  </NavLink>
+     </div>}
+        {props.props.contacts.vk &&   <div>  <NavLink to={`http://vk.com/${props.props.contacts.vk}`}> <img className={s.socials} src={vk} alt="" />  </NavLink>
+     </div>}
+         </div>
         {!props.isAuth && <div className={s.profileButtons} >
             <button className={s.writeButton} >Написать</button>
             <button className={s.recordButton}  >Записаться на услуги</button> </div>}
     </div>
 }
 
-const Contact = ({ contactTitle, contactValue }) => {
+// const Contact = ({ contactTitle, contactValue }) => {
 
-    const src = contactTitle === "vk"
-        ? vk : contactTitle === "whatsapp"
-            ? whatsapp : contactTitle === "instagram"
-                ? instagram : contactTitle === "tiktok"
-                    ? tiktok : contactTitle === "telegram"
-                        ? telegram : contactTitle;
-    if (contactValue) {
-        return <div>  <NavLink to={contactValue}> <img className={s.socials} src={src} alt="" />  </NavLink>
-        </div>
-    }
-}
+//     const src = contactTitle === "vk"
+//         ? vk : contactTitle === "whatsapp"
+//             ? whatsapp : contactTitle === "instagram"
+//                 ? instagram : contactTitle === "tiktok"
+//                     ? tiktok : contactTitle === "telegram"
+//                         ? telegram : contactTitle;
+//     if (contactValue) {
+//         return <div>  <NavLink to={contactValue}> <img className={s.socials} src={src} alt="" />  </NavLink>
+//         </div>
+//     }
+// }
 
 export default ProfileInfo;
 

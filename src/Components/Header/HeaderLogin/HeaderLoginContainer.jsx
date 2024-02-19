@@ -6,7 +6,7 @@ import { login, logout } from '../../../redux/auth-reducer';
 
 const HeaderLoginContainer = (props) => {
   const isAuth = useSelector(state => state.auth.isAuth);
-  const userPhoto = useSelector(state => state.profilePage.profile.photo);
+  const userPhoto = useSelector(state => state.profilePage.profile?.photo || null);
   const [isOpen, setOpen] = useState(false);
   const externalRef = useRef(null);
   const dispatch = useDispatch();
@@ -26,14 +26,12 @@ const HeaderLoginContainer = (props) => {
   const handleClickLogout = () => {
     dispatch(logout());
   }
-  const handleClickLogin = () => {
-    dispatch(login());
-  }
+  
 
   return (
     <div ref={externalRef} onClick={() => { setOpen(!isOpen) }}>
       <HeaderLogin handleClickLogout={handleClickLogout}
-        handleClickLogin={handleClickLogin}
+        
         setOpen={setOpen}
         isOpen={isOpen} userPhoto={userPhoto} isAuth={isAuth} />
     </div>

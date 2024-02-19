@@ -6,7 +6,7 @@ a {
 
 .nav {
   grid-area: nav;
-  background-color: white;
+  
   padding-top: 40px;
   min-height: 100vh;
   position: sticky;
@@ -43,7 +43,7 @@ a {
 
 
 .item:hover * {
-  background-color: #F5F5F5;
+ 
   fill: #707070;
   color: #707070;
 }
@@ -67,9 +67,7 @@ a {
 @media  (max-width: 1279px){
   .item {width:fit-content;
   }
-  .item:hover  * {
-    background-color: white;
-  }}
+  }
 
   .disabled a{
     color: #D6D6D6;
