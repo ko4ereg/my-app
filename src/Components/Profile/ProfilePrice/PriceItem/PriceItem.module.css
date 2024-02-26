@@ -19,5 +19,8 @@ margin-bottom: 8px;
     border-bottom: 1px dotted black;
 }
 
-
+.price{
+    width: fit-content;
+    white-space: nowrap;
+}
  

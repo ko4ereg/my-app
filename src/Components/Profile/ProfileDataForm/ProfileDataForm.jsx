@@ -3,11 +3,13 @@ import s from './ProfileDataForm.module.css';
 import { ReactComponent as IconClose } from './../../../assets/icons/close.svg';
 import Selector from './Selector';
 import { useEffect, useState } from 'react';
-import { saveProfileData } from '../../../redux/profile-reducer';
+import {  saveProfile  } from '../../../redux/profile-reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import Preloader from '../../common/Preloader/Preloader';
+import smallPreloader from './../../../assets/preloaderSmall.svg';
 
 const ProfileDataForm = (props) => {
-
+    const isFetchingStatus = useSelector(state => state.profilePage.isFetchingForm);
     const userProfile = useSelector(state => state.profilePage.profile);
     const selectedOptions = userProfile.services;
     const [value, setSelectedValue] = useState([]);
@@ -22,8 +24,8 @@ const ProfileDataForm = (props) => {
     useEffect( () => {
         setSelectedValue(selectedOptions || []);
      }, [selectedOptions])
-//props.active
-    const handleClose = () => {
+   
+     const handleClose = () => {
         props.setActive(false);
         setClicked(false);
         clearErrors();
@@ -36,26 +38,30 @@ const ProfileDataForm = (props) => {
    
 
     const submit = data => {
-        console.log(data);
         const services = value.map((value) => value);
         const updatedUser = { ...userProfile, ...data };
         if (value.length > 0) {
-            dispatch(saveProfileData(updatedUser, services));
-            props.setActive(false);
-            clearErrors();
-            reset();
+            dispatch(saveProfile(updatedUser, services)).then(() => {
+                if (isFetchingStatus) {
+                    setClicked(false);             
+                    props.setActive(false);
+                    clearErrors();
+                    reset({defaultValues: userProfile});
+                }
+            })
+           
         }
     }
 
     return (<div className={s.modal}>
-        <div className={s.modalTitle}><span>Основная информация</span> <IconClose onClick={handleClose} className={s.icon} /> </div>
-        <form id='editProfile' onSubmit={handleSubmit(submit)} className={s.form} >
+       {!userProfile ? <Preloader /> : <div><div className={s.modalTitle}><span>Основная информация</span> <IconClose onClick={handleClose} className={s.icon} /> </div>
+        <form autoComplete='off' id='editProfile' onSubmit={handleSubmit(submit)} className={s.form} >
             <div className={s.formItem} >
                 <span>Имя</span>
-                <input className={errors.name ? s.error : s.input} placeholder='можно даже с фамилией ;)' type="text" {...register('name', { required: true, maxLength: 100 })} /></div>
+                <input  autoComplete="off" className={errors.name ? s.error : s.input} placeholder='можно даже с фамилией ;)' type="text" {...register('name', { required: true, maxLength: 100 })} /></div>
             <div className={s.formItem} >
                 <span>Город</span>
-                <input className={errors.city ? s.error : s.input} placeholder='ну, там, где живёшь и работаешь…' type="text" {...register('city', { required: true })} /></div>
+                <input autoComplete="off" className={errors.city ? s.error : s.input} placeholder='ну, там, где живёшь и работаешь…' type="text" {...register('city', { required: true })} /></div>
             <div className={s.formItem} >
                 <span>Специализация</span>
                 <Selector clicked={clicked} setClicked={setClicked} active={props.active} handleSelectChange={handleSelectChange} value={value} selectedOptions={selectedOptions} />
@@ -78,7 +84,8 @@ const ProfileDataForm = (props) => {
                 </div>
             </div>
         </form>
-        <button type='submit' form='editProfile' className={s.button}>Сохранить</button>
+        <button type='submit' form='editProfile' className={s.button}> {isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  } </button> </div> }
+       
     </div>)
 }
 

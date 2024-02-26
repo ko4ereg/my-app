@@ -5,14 +5,22 @@
  import iconSetting from './../../../assets/icons/dropdown/settings.svg';
  import iconHelper from './../../../assets/icons/dropdown/helper.svg';
  import iconLogout from './../../../assets/icons/dropdown/logout.svg';
-import { NavLink } from 'react-router-dom';
+import {   Navigate } from 'react-router-dom';
  
 
 const HeaderLogin = (props) => {
  
+   const handleClick = () => {
+  
+      window.location.replace('/login');
+      setTimeout(() => {
+        return <Navigate to={'/login'} replace={true} />
+      }, 1000); 
+   }
+
     if(!props.isAuth){
       return ( 
-        <div  > <NavLink to={'/login'} ><button>Войти</button> </NavLink></div>
+        <div  >  <button onClick={handleClick}>Войти</button> </div>
       )
     }
     return ( <div className={s.dropdownBlock}>

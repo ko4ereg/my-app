@@ -2,16 +2,16 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import s from './PriceBlockForm.module.css';
 import { ReactComponent as IconClose } from './../../../assets/icons/close.svg';
 import { ReactComponent as IconCross } from './../../../assets/icons/cross.svg';
-import { savePriceData } from '../../../redux/profile-reducer';
+import {  savePricelistData } from '../../../redux/profile-reducer';
 import { useDispatch, useSelector } from 'react-redux';
-
+import smallPreloader from './../../../assets/preloaderSmall.svg';
 const PriceBlockForm = (props) => {
-
+    const isFetchingStatus = useSelector(state => state.profilePage.isFetchingForm);
     const   profilePricing  =   useSelector(state => state.profilePage.profile.pricing );
 
     let initialValues = {pricing: profilePricing};
  
-    const { register, reset, handleSubmit, control, formState: { errors } } = useForm({ mode: 'onBlur', defaultValues : initialValues});
+    const { register, reset, handleSubmit, control, clearErrors, formState: { errors } } = useForm({ mode: 'onBlur', defaultValues : initialValues});
 
     const { fields, append, remove } = useFieldArray({control, name: "pricing", keyName: "id",});
 
@@ -26,18 +26,21 @@ const PriceBlockForm = (props) => {
     const dispatch = useDispatch();
 
     const submit  = data => {
-         data.pricing.forEach(item => {
-            item.price = parseInt(item.price);
-        }); 
        const updatedData = data.pricing.map((item, index) => {
             item.id = index + 1;
             return item;
              });
-        props.setModalPriceActive(false);
-        dispatch(savePriceData(updatedData));
-        reset({defaultValues : initialValues});
+        dispatch(savePricelistData(updatedData)).then(() => {
+                if (isFetchingStatus) {           
+                    props.setModalPriceActive(false);
+                    clearErrors();
+                    reset({defaultValues: initialValues});
+                }
+            })
     }
      
+ 
+
     return (<div className={s.modal}>
         <div className={s.modalTitle}><span>Прайс-лист</span> <IconClose onClick={() => { props.setModalPriceActive(false) }} className={s.icon} /> </div>
         <form id='editPrice' onSubmit={handleSubmit(submit )} className={s.form} >
@@ -47,18 +50,25 @@ const PriceBlockForm = (props) => {
               <div className={s.formItemContainer} key={field.id}> 
               {fields.length > 1 &&  <IconClose onClick={() => {handleRemoveInput(index)}} className={s.icon} />}
               <div className={s.formItem}>
-                <input className={errors?.pricing && errors?.pricing[index]?.title?.type === "required" ? s.error : s.input} name={`title[${index}]`} 
+                <div className={s.formSubItem}>
+                    <input className={errors?.pricing && errors?.pricing[index]?.title?.type === "required" ? s.error : s.input} name={`title[${index}]`} 
                 {...register(`pricing[${index}].title`,  {required: true, maxLength: 100 })} placeholder='Услуга' type="text" defaultValue={field.title} />
+                {errors?.pricing && errors?.pricing[index]?.title?.type === "required" && <span className={s.errorSpan}>Поле обязательно к заполнению</span>}
+                </div>
+                <div className={s.formSubItem}>
                 <input className={errors?.pricing && errors?.pricing[index]?.price?.type === "required"  ? s.error : s.input} name={`price[${index}]`} 
                 {...register(`pricing[${index}].price`,  {required: true, maxLength: 100 })}  placeholder='Стоимость' type="text" defaultValue={field.price} />
+                 {errors?.pricing && errors?.pricing[index]?.price?.type === "required" && <span className={s.errorSpan}>Поле обязательно к заполнению</span>}
+                 </div>
               </div>
             </div> ))}
+          
             </div>
             <div onClick={handleAddInput} className={s.addInput}> <IconCross className={s.icon} /> Еще услуга </div>
         </form>
    
     
-        <button type='submit' form='editPrice' className={s.button}>Сохранить</button>
+        <button type='submit' form='editPrice' className={s.button}>{isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  }</button>
     </div>)
 }
 

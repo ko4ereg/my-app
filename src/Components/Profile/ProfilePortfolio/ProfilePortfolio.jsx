@@ -5,7 +5,7 @@ import Gallery from '../../common/Gallery/Gallery';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalGallery from '../../common/Modal/ModalGallery';
-import { savePhotoGallery, saveUpdatedGallery } from '../../../redux/profile-reducer';
+import { deletePortfolioPhoto, savePhotoGallery, savePortfolioPhoto, saveUpdatedGallery, updatePortfolioPhoto } from '../../../redux/profile-reducer';
 
 const ProfilePortfolio = (props) => {
     const [modalGalleryActive, setModalGalleryActive] = useState(false);
@@ -13,11 +13,10 @@ const ProfilePortfolio = (props) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const dispatch = useDispatch();
     const [images, setImagesArray] = useState(imagesArray || [])
- 
     const onPhotoPortfolioSelected = (e) => {
         if (e.target.files.length) {
-            const newPhotos = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
-            dispatch(savePhotoGallery(newPhotos));
+            const newPhotos = Array.from(e.target.files);
+            dispatch(savePortfolioPhoto(newPhotos, props.props.id));
         }
     }
 
@@ -43,6 +42,8 @@ const ProfilePortfolio = (props) => {
     }
 
     const handleDeleteImage = () => {
+        const deletedImageUrl = imagesArray[currentImageIndex];
+        console.log(deletedImageUrl);
         const updatedImages = [...images];
         updatedImages.splice(currentImageIndex, 1);
         if (currentImageIndex === images.length - 1) {
@@ -51,7 +52,8 @@ const ProfilePortfolio = (props) => {
         if ( updatedImages.length === 0) {
             setModalGalleryActive(false);
         }
-        dispatch(saveUpdatedGallery(updatedImages));
+        console.log(updatedImages);
+        dispatch(updatePortfolioPhoto(updatedImages, props.props.id, deletedImageUrl));
     }
 
     const handleClickonImage = (e) => {
@@ -69,12 +71,12 @@ const ProfilePortfolio = (props) => {
    }
 
     return (  <div className={s.profilePortfolio}>
-        <TitleBlock onPhotoPortfolioSelected={onPhotoPortfolioSelected} isAuth={props.isAuth} />
-        <PortfolioBlock modalGalleryActive={modalGalleryActive} 
+        <TitleBlock isOwner={props.isOwner} onPhotoPortfolioSelected={onPhotoPortfolioSelected} />
+        <PortfolioBlock isOwner={props.isOwner} modalGalleryActive={modalGalleryActive} 
         setModalGalleryActive={setModalGalleryActive} 
         portfolio={props.props.portfolio} 
         handleClick={handleClick}
-        isAuth={props.isAuth} /> 
+        onPhotoPortfolioSelected={onPhotoPortfolioSelected} /> 
         <ModalGallery setActive={setModalGalleryActive} active={modalGalleryActive}>
         <Gallery index={currentImageIndex} setModalGalleryActive={setModalGalleryActive}
          images={images}
@@ -82,9 +84,8 @@ const ProfilePortfolio = (props) => {
          handlePrevImage={handlePrevImage} 
          handleDeleteImage={handleDeleteImage}
          currentImageIndex={currentImageIndex}
-         isAuth={props.isAuth}
          handleClickonImage={handleClickonImage}
-      
+         isOwner={props.isOwner}
          />
         </ModalGallery>
         

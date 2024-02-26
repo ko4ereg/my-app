@@ -6,7 +6,7 @@ import { login, logout } from '../../../redux/auth-reducer';
 
 const HeaderLoginContainer = (props) => {
   const isAuth = useSelector(state => state.auth.isAuth);
-  const userPhoto = useSelector(state => state.profilePage.profile?.photo || null);
+  const userPhoto = useSelector(state => state.auth.userPhoto);
   const [isOpen, setOpen] = useState(false);
   const externalRef = useRef(null);
   const dispatch = useDispatch();

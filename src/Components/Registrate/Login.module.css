@@ -1,0 +1,9 @@
+ .wrapperRegistrate {
+  height: 100vh;
+padding: 100px;
+}
+
+.wrapperRegistrate button{
+  width: fit-content;
+}
+ 

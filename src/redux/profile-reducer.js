@@ -1,3 +1,7 @@
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { authAPI, profileAPI } from "../api/api";
+import { db } from "../firebase";
+import { getAuthUserData, setAuthUserPhoto } from "./auth-reducer";
 
 const SAVE_PROFILE_DATA = 'SAVE_PROFILE_DATA';
 const SAVE_PRICE_DATA = 'SAVE_PRICE_DATA';
@@ -5,21 +9,21 @@ const SAVE_UPDATED_GALLERY = 'SAVE_UPDATED_GALLERY';
 const SAVE_PHOTO_GALLERY = 'SAVE_PHOTO_GALLERY';
 const DELETE_MAIN_PHOTO = 'DELETE_MAIN_PHOTO';
 const UPDATE_MAIN_PHOTO = 'UPDATE_MAIN_PHOTO';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const SET_IS_FETCHING_FORM = 'SET_IS_FETCHING_FORM:';
 
 let initialState = {
     posts: null,
-    profile: {
-        id: null,
-        name: null,
-        city: null,
-        services: null,
-        aboutMe: null,
-        contacts: null},
-    photo: null,
-    // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"
-    pricing: null,
-    portfolio: null,
-    status: '',
+    profile: null,
+    isFetching: false,
+    isFetchingForm: false,
+
+    // photo: null,
+    // // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"
+    // pricing: null,
+
+    // status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -34,6 +38,10 @@ const profileReducer = (state = initialState, action) => {
 
                 },
 
+            }
+        case SET_USER_PROFILE:
+            return {
+                ...state, profile: action.profile,
             }
         case SAVE_PRICE_DATA:
             return {
@@ -50,6 +58,7 @@ const profileReducer = (state = initialState, action) => {
                 profile: {
                     ...state.profile,
                     portfolio: action.portfolio,
+                    // portfolio: [...state.profile.portfolio, action.photo]
                 },
 
             }
@@ -58,8 +67,9 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: {
                     ...state.profile,
-                    portfolio: [...state.profile.portfolio, action.photo]
-                }
+                    portfolio: state.profile.portfolio.concat(action.photo)
+                },
+
             }
         case DELETE_MAIN_PHOTO:
             return {
@@ -77,37 +87,166 @@ const profileReducer = (state = initialState, action) => {
                     photo: action.photo
                 }
             }
+        case SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        case SET_IS_FETCHING_FORM:
+            return {
+                ...state,
+                isFetchingForm: action.isFetchingForm
+            }
         default:
             return state;
     }
 }
 
-export const saveProfileData = (profile, services) => ({ type: SAVE_PROFILE_DATA, profile, services });
-export const savePriceData = (price) => ({ type: SAVE_PRICE_DATA, price });
+// export const saveProfileData = (profile, services) => ({ type: SAVE_PROFILE_DATA, profile, services });
+// export const savePriceData = (price) => ({ type: SAVE_PRICE_DATA, price });
 export const saveUpdatedGallery = (portfolio) => ({ type: SAVE_UPDATED_GALLERY, portfolio })
 export const savePhotoGallery = (photo) => ({ type: SAVE_PHOTO_GALLERY, photo })
-export const deleteMainPhoto = () => ({ type: DELETE_MAIN_PHOTO })
+export const deleteMainPhotoSucces = () => ({ type: DELETE_MAIN_PHOTO })
 export const updateMainPhoto = (photo) => ({ type: UPDATE_MAIN_PHOTO, photo })
-// export const getUserProfile = (userId) => async (dispatch) => {
-//     let response = await usersAPI.getProfile(userId);
-//     dispatch(setUserProfile(response.data));
-// }
-// export const getStatus = (userId) => async (dispatch) => {
-//   let response = await  profileAPI.getStatus(userId);
-//             dispatch(setStatus(response.data));
-// }
+export const isFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching })
+export const isFetchingForm = (isFetchingForm) => ({ type: SET_IS_FETCHING_FORM, isFetchingForm })
+let userId;
 
-// export const updateStatus = (status) => async (dispatch) => {
-//  try { 
-//     let response = await  profileAPI.updateStatus(status);
-//     if (response.data.resultCode === 0) {
-//         dispatch(setStatus(status));
-//     }
-// } catch(error) {
-//     alert("Создайте поп-ап для ошибки");
-// }
+const authenticateUser = async () => {
+    let response = authAPI.authMe();
+    if (response.currentUser) {
+        const { currentUser } = response;
+        const usersCollectionRef = collection(db, 'users');
+        const q = query(usersCollectionRef, where('uid', '==', currentUser.uid));
+        const querySnapshot = await getDocs(q);
 
-// }
+        querySnapshot.forEach((doc) => {
+            userId = doc.data().id;
+        });
+    }
+}
+
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+
+export const getUserProfile = (userId) => async (dispatch) => {
+    dispatch(isFetching(true));
+    let response = await profileAPI.getProfile(userId);
+    dispatch(isFetching(false));
+    return dispatch(setUserProfile(response));
+  
+}
+
+export const saveProfile = (profile, services) => async (dispatch) => {
+    dispatch(isFetchingForm(true));
+    authenticateUser();
+    try {
+       profileAPI.saveProfile(profile, services).then(() => {
+        dispatch(getUserProfile(userId)).then(()=> {
+            dispatch(isFetchingForm(false));
+        })
+      
+        })
+    }
+    
+    catch {
+        console.log('Не получилось');
+    }
+    
+
+}
+
+export const savePricelistData = (updatedPricelist) => async (dispatch) => {
+    dispatch(isFetchingForm(true));
+    authenticateUser();
+    try {
+        await profileAPI.savePricelist(updatedPricelist).then(() => {
+            dispatch(getUserProfile(userId)).then(()=> {
+                dispatch(isFetchingForm(false));
+            })
+          
+            })
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+
+export const saveMainPhoto = (file, userId) => async (dispatch) => {
+    try {
+        dispatch(isFetching(true));
+        let response = await profileAPI.saveUserPhoto(file, userId);
+        dispatch(updateMainPhoto(response))
+        dispatch(setAuthUserPhoto(response));
+        dispatch(isFetching(false));
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+
+export const deleteMainPhoto = (file) => async (dispatch) => {
+    try {
+        dispatch(isFetching(true));
+        await profileAPI.deletePhoto();
+        dispatch(deleteMainPhotoSucces())
+        dispatch(setAuthUserPhoto(null));
+        dispatch(isFetching(false));
+
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+
+export const savePortfolioPhoto = (file, userId) => async (dispatch) => {
+    try {
+        dispatch(isFetching(true));
+        let response = await profileAPI.saveUserPortfolioPhoto(file, userId);
+        dispatch(savePhotoGallery(response));
+        dispatch(isFetching(false));
+
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+
+export const updatePortfolioPhoto = (file, userId, deletedImageUrl) => async (dispatch) => {
+    try {
+        dispatch(isFetching(true));
+        let response = await profileAPI.updateUserPortfolioPhoto(file, userId);
+        await profileAPI.deletePortfolioPhoto(deletedImageUrl);
+        dispatch(saveUpdatedGallery(file));
+        dispatch(isFetching(false));
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+export const deletePortfolioPhoto = (file, userId) => async (dispatch) => {
+    try {
+        dispatch(isFetching(true));
+        let response = await profileAPI.deletePortfolioPhoto(userId);
+        dispatch(isFetching(false));
+        //    dispatch(saveUpdatedGallery(response));
+
+    }
+    catch {
+        console.log('Не получилось');
+    }
+
+}
+
+
+
+
+
+
 
 // export const savePhoto = (file) => async (dispatch) => {
 //     let response = await  profileAPI.savePhoto(file);
@@ -135,20 +274,20 @@ export default profileReducer;
 //         { id: 2, message: "I'm not gay!", likescount: 100 },
 //         { id: 1, message: "Hello!", likescount: 0 },
 //     ],
-    // profile: {
-    //     id: 1,
-    //     name: "Валентина Рубцова",
-    //     city: "Екатеринбург",
-    //     services: ["Педикюр", "Массаж"],
-    //     aboutMe: "Люблю ноготочки только на ногах, это мое все",
-    //     contacts: {
-    //         instagram: "instagram.com",
-    //         whatsapp: "+79850",
-    //         telegram: "@ass",
-    //         tiktok: "tiktok.com",
-    //         vk: "vk.com"
+// profile: {
+//     id: 1,
+//     name: "Валентина Рубцова",
+//     city: "Екатеринбург",
+//     services: ["Педикюр", "Массаж"],
+//     aboutMe: "Люблю ноготочки только на ногах, это мое все",
+//     contacts: {
+//         instagram: "instagram.com",
+//         whatsapp: "+79850",
+//         telegram: "@ass",
+//         tiktok: "tiktok.com",
+//         vk: "vk.com"
 
-    //     },
+//     },
 
 //         photo: "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg",
 //         // "https://img.freepik.com/free-photo/front-portrait-of-the-woman-with-beauty-face_186202-6146.jpg"

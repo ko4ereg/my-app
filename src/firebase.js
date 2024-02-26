@@ -2,6 +2,7 @@
 import { collection, getCountFromServer, getDocs, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 
 
@@ -29,7 +30,6 @@ export const firebaseConfig = {
   appId: "1:2071023918:web:dd604236914d26b913eabf"
 
 };
-
 
 // Initialize Firebase
 

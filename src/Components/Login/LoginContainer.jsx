@@ -10,14 +10,17 @@ const LoginContainer = (props) => {
     const isAuth = useSelector(state => state.auth.isAuth);
 
     const dispatch = useDispatch();
-
+   
   
     const  handleLogin = (email, password) => {
         dispatch(login(email, password));
     }
 
     if (isAuth) {
-        return <Navigate to="/profile" replace={true} />
+        window.location.replace('/profile');
+        setTimeout(() => {
+            return <Navigate to={'/profile'} replace={true} />
+          }, 1000); 
     }
 
     return (

@@ -6,8 +6,7 @@ import { db } from "../firebase";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
-const GET_CAPTCHA_URL_SUCCES = 'GET_CAPTCHA_URL_SUCCES';
-const SET_ISAUTH_TRUE = 'SET_ISAUTH_TRUE';
+
 const LOGOUT_SUCCES = 'LOGOUT_SUCCES';
 
 
@@ -16,7 +15,7 @@ let initialState = {
     email: null,
     name: null,
     isAuth: false,
-    // userPhoto: null,
+    userPhoto: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,21 +25,30 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload,
             }
+        case SET_USER_PHOTO:
+            return {
+                ...state,
+                userPhoto : action.photo,
+            }
         case LOGOUT_SUCCES:
             return {
                 ...state,
                 userId: null,
                 email: null,
                 name: null,
-                isAuth: false
+                isAuth: false,
+                userPhoto: null
             }
+
         default:
             return state;
     }
 }
 
-export const setAuthUserData = (userId, email, name, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, name, isAuth } });
+export const setAuthUserData = (userId, email, name, isAuth, userPhoto) => ({ type: SET_USER_DATA, payload: { userId, email, name, isAuth, userPhoto } });
 export const logoutSucces = () => ({ type: LOGOUT_SUCCES })
+export const setAuthUserPhoto = (photo) => ({type : SET_USER_PHOTO, photo })
+
 
 export const getAuthUserData = () => {
     return async (dispatch) => {
@@ -52,7 +60,8 @@ export const getAuthUserData = () => {
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
                 const id = doc.data().id;
-                dispatch(setAuthUserData(id, currentUser.email, currentUser.displayName, true));
+                const userPhoto = doc.data().photo;
+                dispatch(setAuthUserData(id, currentUser.email, currentUser.displayName, true, userPhoto));
             });
 
         }

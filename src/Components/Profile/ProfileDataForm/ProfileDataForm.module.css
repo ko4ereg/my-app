@@ -123,9 +123,18 @@ resize: none;
   .button{
     width: 100%;
    margin: 12px 0px 12px 0px;
-   display: block;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    margin: 0 auto;
 
+ }
+
+ .button img{
+   width: 60px;
+   height: 60px;
+   justify-self: center;
+   align-self: center;
  }
 * {
   scrollbar-width: thin;

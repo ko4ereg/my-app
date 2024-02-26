@@ -10,8 +10,8 @@ const PriceBlock = (props) => {
     // let priceElement = props.pricing.map((item, index) => <PriceItem key={item.id} title={item.title} price={item.price} />);
     if (!props.pricing || props.pricing.length === 0  ) {
         return <div className={s.pricingListEmptyContainer}>
-            <span>Пока что пусто, поэтому можно</span>
-            {props.isAuth && <button onClick={() => props.setModalActive(true)} className={s.button}>Добавить оказываемые услуги <img src={icon} alt="" /></button>}
+            <span>Пока что пусто</span>
+            {props.isOwner && <button onClick={() => props.setModalActive(true)} className={s.button}>Добавить оказываемые услуги <img src={icon} alt="" /></button>}
         </div>
         
      }
