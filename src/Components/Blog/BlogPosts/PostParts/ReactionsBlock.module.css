@@ -1,0 +1,60 @@
+.reactions{
+    border-bottom: 1px solid #EBEBEB;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #999999;
+  }
+  
+  .likes{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+  }
+
+  .likesNotAuth{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .comments{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+  }
+
+  
+.likeIcon *{
+    stroke: #999999;
+  }
+
+  .likeIconNotAuth * {
+    stroke: #999999;
+  }
+  
+  .likedIcon *{
+    fill: red;
+  }
+  .likeIcon:hover *{
+   
+  fill: #E66E79;
+  }
+  .commentIcon *{
+  stroke: #999999;
+  }
+  .commentIcon:hover  * {
+    fill: #A3CFBB;
+   
+    
+  }
+  .allCommentIcon   * {
+    fill: #2bb376;
+   
+    
+  }

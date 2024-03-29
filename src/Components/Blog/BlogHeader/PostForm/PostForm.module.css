@@ -1,0 +1,280 @@
+ .icon {
+    width: 24px;
+    cursor: pointer;
+ }
+
+ .icon * {
+    stroke: #999999;
+ }
+
+ .modal {
+    min-height: 408;
+    position: relative;
+ }
+
+ .photoUploader {
+    display: none;
+ }
+
+ .label {
+    cursor: pointer;
+   position: relative;
+ }
+
+ .buttons {
+    display: flex;
+    gap: 8px;
+ }
+
+ .emojipicker {
+    /* position: absolute;
+    left: 30px; */
+ }
+
+ .labelDisabled * {
+    stroke: #999999;
+
+ }
+
+ .labelDisabled {
+    cursor: default;
+    pointer-events: none;
+ }
+
+ .preview {
+    display: flex;
+    gap: 8px;
+ }
+
+ .previewItem img {
+    width: 100px;
+ }
+
+ .previewItem {
+    position: relative;
+
+ }
+
+ .deleteIcon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .deleteIcon .icon {
+    width: 15px;
+    height: 15px;
+ }
+ .deleteIcon .icon {
+    width: 15px;
+    height: 15px;
+ }
+
+ .modalTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Comfortaa;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+
+
+
+ }
+
+
+
+ .emojiIcon {
+    cursor: pointer;
+ }
+
+ .emojiIcon * {
+    stroke: #1F1F1F;
+ }
+
+ .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 20px 10px 0px;
+    margin-right: -24px;
+    width: 632px;
+    max-height: 596px;
+    overflow-y: scroll;
+    margin-bottom: 24px;
+
+ }
+
+
+
+ .form input {
+    width: 100%;
+
+    max-height: 44px;
+    border-bottom: 1px solid #999999;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding: 12px 0px 8px 0px;
+ }
+
+ .form input:hover {
+    border-bottom: 1px solid #1F1F1F;
+    background-color: #fff;
+ }
+
+ .form input:focus {
+    border-bottom: 1px solid #1F1F1F;
+    background-color: #fff;
+ }
+
+ .formItem {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ .formItem span {
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    max-width: 132px;
+
+ }
+
+ .formItemContacts {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+ .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 426px;
+ }
+
+ .formItemContacts span {
+    align-self: flex-start;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    max-width: 132px;
+ }
+
+ .form textarea {
+    width: 100%;
+    min-height: 144px;
+    max-height: 540px;
+    height:max-content;
+    overflow-y: hidden;
+    border: none;
+    border-bottom: 1px solid #999999;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding: 12px 0 8px 0;
+  resize: none;
+ }
+
+ .form textarea:focus {
+    outline: none;
+
+ }
+
+ 
+
+ .buttonBlock {
+    display: flex;
+    justify-content: end;
+    border-top: 0.5px solid #EBEBEB;
+    padding-top: 12px;
+ }
+
+ .button {
+    background-color: #198754;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 115px;
+ }
+
+  .button img{
+   width: 60px;
+   height: 60px;
+ }
+
+ .button:hover {
+    background-color: #359569;
+ }
+
+ .button:disabled {
+    background-color: #59A984;
+    pointer-events: none;
+ }
+
+ * {
+    scrollbar-width: thin;
+    scrollbar-color: #D6D6D6 #FFFFFF;
+ }
+
+ .selector {
+    width: 100%;
+    width: 100%;
+    max-width: 426px;
+    max-height: 44px;
+    border-bottom: 1px solid #999999;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+
+ }
+
+ .error {
+    border-bottom: 1px solid red;
+ }
+
+ .errorSpan {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+ }
+
+ .emojiContainer{
+   position: absolute;
+   bottom: 120px;
+   left: 30px;
+  }

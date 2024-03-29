@@ -5,9 +5,10 @@ import React  from 'react';
 
 
 const options = [
-    { value: 'manicure', label: 'Маникюр' },
-    { value: 'pedicure', label: 'Педикюр' },
-    { value: 'massage', label: 'Массаж' }
+    { value: 'manicure', label: 'маникюр' },
+    { value: 'pedicure', label: 'педикюр' },
+    { value: 'massage', label: 'массаж' },
+    { value: 'hair', label: 'волосы'}
 ]
 
 

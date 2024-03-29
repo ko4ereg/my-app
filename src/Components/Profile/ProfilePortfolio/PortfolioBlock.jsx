@@ -2,8 +2,9 @@ import PortfolioItem from './PortfolioItem/PortfolioItem';
 import s from './ProfilePortfolio.module.css';
 import { useMemo } from 'react';
 import icon from './../../../assets/icons/cross.svg';
-import { useSelector } from 'react-redux';
-import Preloader from '../../common/Preloader/Preloader';
+import iconWhite from './../../../assets/icons/crossWhite.svg';
+ 
+ 
 
 const PortfolioBlock = (props) => {
  
@@ -13,7 +14,7 @@ const PortfolioBlock = (props) => {
     if (!props.portfolio || props.portfolio.length === 0) {
         return <div className={s.portfolioListEmptyContainer}>
             <span>Скоро здесь будет красиво!</span>
-             {props.isOwner && <label htmlFor="inputPhotoPortfolio"> <div className={s.addButton}>Добавить фото работ <img src={icon} alt="" /></div></label>} 
+             {props.isOwner && <label htmlFor="inputPhotoPortfolio"> <div className={props.pricing ? s.addButton + ' ' + s.mainButton : s.addButton} >Добавить фото работ <img src={props.pricing? iconWhite : icon} alt="" /></div></label>} 
         </div>
         
      }

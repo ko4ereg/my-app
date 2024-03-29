@@ -11,8 +11,16 @@ const Modal = ({active, setActive, children}) => {
         }
     }, [active])
 
-    return (<div className={active ? s.active : s.modal } onClick={ () => {setActive(false)}}>
-            <div className={s.modalContent}  onClick={ (e) => {e.stopPropagation()}} >
+const handleClick = (e) => {
+    console.log(e.target);
+    if (e.target.classList.contains(s.active) ) {
+        setActive(false)
+    }
+   
+}
+
+    return (<div className={active ? s.active : s.modal } onClick={ (e) => {handleClick(e)}}>
+            <div className={s.modalContent}    >
                 {children }
             </div>
            </div>

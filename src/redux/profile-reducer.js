@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { authAPI, profileAPI } from "../api/api";
 import { db } from "../firebase";
-import { getAuthUserData, setAuthUserPhoto } from "./auth-reducer";
+import { setAuthUserPhoto } from "./auth-reducer";
 
 const SAVE_PROFILE_DATA = 'SAVE_PROFILE_DATA';
 const SAVE_PRICE_DATA = 'SAVE_PRICE_DATA';
@@ -40,6 +40,7 @@ const profileReducer = (state = initialState, action) => {
 
             }
         case SET_USER_PROFILE:
+            
             return {
                 ...state, profile: action.profile,
             }
@@ -205,8 +206,10 @@ export const savePortfolioPhoto = (file, userId) => async (dispatch) => {
     try {
         dispatch(isFetching(true));
         let response = await profileAPI.saveUserPortfolioPhoto(file, userId);
-        dispatch(savePhotoGallery(response));
+        dispatch(savePhotoGallery(response)) ;
         dispatch(isFetching(false));
+        
+      
 
     }
     catch {

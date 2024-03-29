@@ -198,3 +198,10 @@ letter-spacing: 0em;
 text-align: left;
 
     }
+
+    .button:disabled {
+      background-color: #474747;
+      pointer-events: none;
+    }
+
+   

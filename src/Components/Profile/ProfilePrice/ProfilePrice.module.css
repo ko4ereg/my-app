@@ -156,6 +156,14 @@ flex-direction: column;
 margin: 0 auto; 
 gap: 8px;}
 
+.mainButton{
+  background-color: #1F1F1F;
+  color: #FFF;
+}
+
+.mainButton:hover{
+  background-color: #474747;
+}
 
 .icon * {
   fill: #999999;

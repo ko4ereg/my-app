@@ -9,6 +9,7 @@ const Skeleton = (props) => (
     viewBox="0 0 820 960"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
+    style={{marginLeft: "32px"}}
     {...props}
   >
     <rect x="168" y="244" rx="0" ry="0" width="88" height="20" /> 

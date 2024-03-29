@@ -24,7 +24,7 @@ const ProfileDataForm = (props) => {
     useEffect( () => {
         setSelectedValue(selectedOptions || []);
      }, [selectedOptions])
-   
+
      const handleClose = () => {
         props.setActive(false);
         setClicked(false);
@@ -38,8 +38,9 @@ const ProfileDataForm = (props) => {
    
 
     const submit = data => {
-        const services = value.map((value) => value);
-        const updatedUser = { ...userProfile, ...data };
+        const services = value.map((value) => value.toLowerCase());
+        const updatedCity = data.city.toLowerCase();
+        const updatedUser = { ...userProfile, ...data, city: updatedCity };
         if (value.length > 0) {
             dispatch(saveProfile(updatedUser, services)).then(() => {
                 if (isFetchingStatus) {
@@ -84,7 +85,7 @@ const ProfileDataForm = (props) => {
                 </div>
             </div>
         </form>
-        <button type='submit' form='editProfile' className={s.button}> {isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  } </button> </div> }
+        <button type='submit' disabled={isFetchingStatus} form='editProfile' className={s.button}> {isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  } </button> </div> }
        
     </div>)
 }
@@ -92,11 +93,3 @@ const ProfileDataForm = (props) => {
 
 export default ProfileDataForm;
 
-
-//    <div className={s.contacts}>
-//    <input name='instagram' placeholder='instagram' type="text" {...register('contacts.instagram')}/>
-//    <input name='whatsapp' placeholder='whatsapp' type="text" {...register('contacts.whatsapp')}  />
-//    <input name='telegram' placeholder='telegram' type="text" {...register('contacts.telegram' )}   />
-//    <input name='tiktok' placeholder='tiktok' type="text" {...register('contacts.tiktok' )}  />
-//    <input name='vk' placeholder='vk' type="text" {...register('contacts.vk')}  />
-//    </div>

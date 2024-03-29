@@ -8,7 +8,7 @@ const TitleBlock = (props) => {
 
     return (  <div className={s.titleBlock}>
           <div className={s.title} >Услуги</div>
-        {props.isOwner &&  <div className={s.block}  onClick={() => props.setModalActive(true)}><IconWritepen className={s.icon}/>Изменить</div>}
+        {props.isOwner && props.pricing && <div className={s.block}  onClick={() => props.setModalActive(true)}><IconWritepen className={s.icon}/>Изменить</div>}
           <Modal active={props.active} setActive={props.setModalActive}>
          <PriceBlockForm active={props.active} setModalPriceActive={props.setModalActive}/>
              </Modal>

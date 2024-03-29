@@ -6,8 +6,8 @@ import { useState } from 'react';
 const ProfilePrice = (props) => {
     const [modalPriceActive, setModalPriceActive] = useState(false);
     return (<div className={s.profilePrice}>
-        <TitleBlock isOwner={props.isOwner} active={modalPriceActive} setModalActive={setModalPriceActive} />
-        <PriceBlock isOwner={props.isOwner} setModalActive={setModalPriceActive} pricing={props.props.pricing} />
+        <TitleBlock pricing={props.props.pricing}  isOwner={props.isOwner} active={modalPriceActive} setModalActive={setModalPriceActive} />
+        <PriceBlock isOwner={props.isOwner} name={props.props.name} setModalActive={setModalPriceActive} pricing={props.props.pricing} />
     </div>
     )
 }

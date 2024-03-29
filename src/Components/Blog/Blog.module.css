@@ -1,0 +1,15 @@
+.blog {
+  display: flex;
+  flex-direction: column;
+  background-color: #F9F7F2;
+  padding: 40px 32px 0px 32px;
+  min-height: 100%;
+  gap: 16px;
+  margin-bottom: 16px;
+  width: 624px;
+}
+
+.scroll{
+  position: relative;
+}
+

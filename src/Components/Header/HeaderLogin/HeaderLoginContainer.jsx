@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import HeaderLogin from './HeaderLogin';
 import { useEffect, useRef, useState } from 'react';
 import { login, logout } from '../../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
 
 const HeaderLoginContainer = (props) => {
@@ -25,6 +26,10 @@ const HeaderLoginContainer = (props) => {
 
   const handleClickLogout = () => {
     dispatch(logout());
+    window.location.replace('/blog');
+      setTimeout(() => {
+        return <Navigate to={'/blog'} replace={true} />
+      }, 1000); 
   }
   
 

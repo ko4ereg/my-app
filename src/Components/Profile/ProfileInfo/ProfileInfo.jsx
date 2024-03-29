@@ -18,7 +18,10 @@ import { saveMainPhoto } from '../../../redux/profile-reducer';
 import { useDispatch } from 'react-redux';
 
 const ProfileInfo = (props) => {
-  
+    // let services =  props.props.services;
+    // for (let i = 0; i < services.length; i++) {
+    //     services[i] = services[i].charAt(0).toUpperCase() + services[i].substr(1);
+    // }
     const [modalActive, setModalActive] = useState(false);
     const [modalGalleryActive, setModalGalleryActive] = useState(false);
     const dispatch = useDispatch();
@@ -30,6 +33,8 @@ const ProfileInfo = (props) => {
         }
     }
 
+
+
     if (!props.props.services && !props.props.city && !props.props.aboutMe) {
         return (<div>
             <div className={s.profile}>
@@ -37,13 +42,13 @@ const ProfileInfo = (props) => {
                 {props.props.photo ? <div><img onClick={() => setModalGalleryActive(true)} className={s.userPhoto} src={props.props.photo} alt="" /></div>
                     : props.isOwner ? <div className={s.mainPhotoContainer}>  <label htmlFor="emptyPhotoInput"><input onChange={handleUpdate} className={s.emptyPhotoInput} type="file" id='emptyPhotoInput' />
                         <img className={s.userPhoto} src={noPhoto} alt="" />
-                        <img className={s.overlay} src={crossIcon} alt="" /></label></div> 
-                        : <div style={{cursor: 'default'}} className={s.mainPhotoContainer}>   
-                        <img  style={{cursor: 'default'}} className={s.userPhoto} src={noPhoto} alt="" />
-                        </div> }
-                <div className={s.emptyProfile} >{props.props.name} {props.isOwner && <button onClick={() => { setModalActive(true) }}>Заполнить профиль <img className={s.editIcon} src={editIcon} alt="" /> </button>} </div>
+                        <img className={s.overlay} src={crossIcon} alt="" /></label></div>
+                        : <div style={{ cursor: 'default' }} className={s.mainPhotoContainer}>
+                            <img style={{ cursor: 'default' }} className={s.userPhoto} src={noPhoto} alt="" />
+                        </div>}
+                <div className={s.emptyProfile} >{props.props.name} {props.isOwner && <button className={s.button} onClick={() => { setModalActive(true) }}>Заполнить профиль <img className={s.editIcon} src={editIcon} alt="" /> </button>} </div>
                 <ModalGallery active={modalGalleryActive} setActive={setModalGalleryActive}>
-                    <MainPhotoGallery handleUpdate={handleUpdate}  isOwner={props.isOwner} mainPhoto={props.props.photo} setModalGalleryActive={setModalGalleryActive}
+                    <MainPhotoGallery handleUpdate={handleUpdate} isOwner={props.isOwner} mainPhoto={props.props.photo} setModalGalleryActive={setModalGalleryActive}
                     />
                 </ModalGallery>
                 <Modal active={modalActive} setActive={setModalActive}>
@@ -60,7 +65,7 @@ const ProfileInfo = (props) => {
                     <img className={s.userPhoto} src={noPhoto} alt="" />
                     <img className={s.overlay} src={crossIcon} alt="" />
                 </label></div>}
-            <ProfileData isOwner={props.isOwner}  setActive={setModalActive} props={props.props} />
+            <ProfileData isOwner={props.isOwner} setActive={setModalActive} props={props.props} />
             <ModalGallery active={modalGalleryActive} setActive={setModalGalleryActive}>
                 <MainPhotoGallery handleUpdate={handleUpdate} isOwner={props.isOwner} mainPhoto={props.props.photo} setModalGalleryActive={setModalGalleryActive}
                 />
@@ -77,9 +82,14 @@ const ProfileData = (props) => {
     return <div className={s.info}>
         {props.isOwner && <div className={s.editProfile} onClick={() => { props.setActive(true) }} ><IconEdit className={s.icon} /></div>}
         <div>{props.props.name}</div>
-        {props.props.services && <div className={s.location} > <div className={s.typeservice} > {props.props.services.join(', ')}</div>
+        {props.props.services && <div className={s.location} > <div className={s.typeservice} >
+            {props.props.services.join(', ')}
+
+        </div>
             <div className={s.dot}></div>
-            <div className={s.city} >{props.props.city}</div> </div>}
+            <div className={s.city} >
+                {props.props.city}
+            </div> </div>}
 
         <div className={s.aboutMe}> {props.props.aboutMe} </div>
 
@@ -96,8 +106,8 @@ const ProfileData = (props) => {
             </div>}
         </div>
         {!props.isOwner && <div className={s.profileButtons} >
-            <button className={s.writeButton} >Написать</button>
-            <button className={s.recordButton}  >Записаться на услуги</button> </div>}
+            <button onClick={() => alert('Пока недоступно')} className={s.writeButton} >Написать</button>
+            <button onClick={() => alert('Пока недоступно')} className={s.recordButton}  >Записаться на услуги</button> </div>}
     </div>
 }
 

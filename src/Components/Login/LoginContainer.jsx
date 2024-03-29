@@ -8,12 +8,17 @@ import { Navigate } from "react-router-dom";
 
 const LoginContainer = (props) => {
     const isAuth = useSelector(state => state.auth.isAuth);
-
     const dispatch = useDispatch();
-   
+    const [errorMessage, setErrorMessage] = useState('');
   
     const  handleLogin = (email, password) => {
-        dispatch(login(email, password));
+        dispatch(login(email, password))
+        .catch((error) => {
+            // Обработка ошибки
+            const errorMessage = error.message;
+            setErrorMessage(errorMessage);
+        });
+    
     }
 
     if (isAuth) {
@@ -25,7 +30,7 @@ const LoginContainer = (props) => {
 
     return (
         <div >
-            <Login handleLogin={handleLogin} />
+            <Login errorMessage={errorMessage} handleLogin={handleLogin} />
         </div>)
 }
 

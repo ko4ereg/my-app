@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes,   } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer/Footer';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Preloader from './Components/common/Preloader/Preloader';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import NavbarContainer from './Components/Navbar/NavbarContainer';
@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import RegistrateContainer from './Components/Registrate/RegistrateContainer';
 import BlogContainer from './Components/Blog/BlogContainer';
+import ResetPasswordContainer from './Components/Login/ResetPasswordContainer';
+import MastersContainer from './Components/Masters/MastersContainer';
+import SearchContainer from './Components/Masters/SearchContainer';
 
 
 function App() {
@@ -19,7 +22,7 @@ function App() {
   const initialized = useSelector(state => state.app.initialized)
   const dispatch = useDispatch();
 
-  
+ 
  
  
   const pathName = window.location.pathname;
@@ -41,30 +44,38 @@ function App() {
   }, [auth, pathName]);
 
   if (!initialized) return <Preloader />;
+ 
 
   return (
     <BrowserRouter>
     
       
       <div className='app-wrapper'>
-      {pathName !== '/login' ?  <HeaderContainer/> : null}
-        
+      {pathName !== '/login' && pathName !== '/registrate' && pathName !== '/resetpassword'   ?  <HeaderContainer /> : null}
+      <Routes>
+             
+              
+                <Route path="/login" element={<LoginContainer />} />
+                <Route path="/registrate" element={<RegistrateContainer  />} />
+                <Route path="/resetpassword" element={<ResetPasswordContainer  />} />
+            
+              </Routes>
         <div className='container'>
-        {pathName !== '/login' ?  <NavbarContainer className='navbar' /> : null}  
+        {auth ?  <NavbarContainer className='navbar' /> : null}  
           <div className='app-wrapper-content'>
             <Suspense fallback={<Preloader />}>
               <Routes>
-              <Route path="/" element={<Navigate to="/profile/1" />} />
+              <Route path="/" element={<Navigate to="/blog" />} />
                 <Route path="/profile/:userId?" element={<ProfileContainer />} />
                 <Route path="/blog" element={<BlogContainer />} />
-                <Route path="/login" element={<LoginContainer />} />
-                <Route path="/registrate" element={<RegistrateContainer  />} />
+                <Route path="/masters" element={<MastersContainer />} />
+                <Route path="/search*" element={<SearchContainer />} />
                 <Route element={<Footer />}/>
               </Routes>
             </Suspense>
           </div>
         </div>
-        {pathName !== '/login' ?  <Footer/> : null}
+        {pathName !== '/login' && pathName !== '/resetpassword' && pathName !== '/registrate' ?  <Footer/> : null}
       </div>
     </BrowserRouter>
   );

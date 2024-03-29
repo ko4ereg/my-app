@@ -119,3 +119,12 @@ box-sizing: border-box;
 .addButton:hover{
   background-color: #EBEBEB;
 }
+
+.mainButton{
+  background-color: #1F1F1F;
+  color: #FFF;
+}
+
+.mainButton:hover{
+  background-color: #474747;
+}

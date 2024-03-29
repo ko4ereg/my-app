@@ -3,12 +3,19 @@
    justify-content: space-between;
 width: 100%;
 margin-bottom: 8px;
+font-size: 16px;
+font-weight: 600;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
 }
 
 .title{
     position: relative;
     width: 100%;
     overflow: hidden;
+
+
 }
 
 .title::after{
@@ -22,5 +29,6 @@ margin-bottom: 8px;
 .price{
     width: fit-content;
     white-space: nowrap;
+    font-weight: 700;
 }
  

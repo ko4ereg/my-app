@@ -39,10 +39,9 @@ import Skeleton from '../common/Skeleton/Skeleton';
         if (!userData || Object.keys(userData).length === 0 || isFetchingStatus) {
           return <Skeleton />
         }
-      
      
     return <Profile isAuth={isAuth} 
-    isOwner={!userId} 
+    isOwner={parseInt(userId) === userDataId || !userId } 
     userData={userData} />
  }
 

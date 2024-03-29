@@ -4,3 +4,8 @@
   left: 50vw;
   top: 40vh;
 }
+.preloaderScroll{
+  position: absolute;
+  left: 50vw;
+  bottom: 20px;
+}

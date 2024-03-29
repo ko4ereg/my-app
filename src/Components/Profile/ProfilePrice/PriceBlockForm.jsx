@@ -43,7 +43,7 @@ const PriceBlockForm = (props) => {
 
     return (<div className={s.modal}>
         <div className={s.modalTitle}><span>Прайс-лист</span> <IconClose onClick={() => { props.setModalPriceActive(false) }} className={s.icon} /> </div>
-        <form id='editPrice' onSubmit={handleSubmit(submit )} className={s.form} >
+        <form autoComplete='off' id='editPrice' onSubmit={handleSubmit(submit )} className={s.form} >
             <div className={s.services}>
               {fields.map((field, index) =>(
                
@@ -51,7 +51,7 @@ const PriceBlockForm = (props) => {
               {fields.length > 1 &&  <IconClose onClick={() => {handleRemoveInput(index)}} className={s.icon} />}
               <div className={s.formItem}>
                 <div className={s.formSubItem}>
-                    <input className={errors?.pricing && errors?.pricing[index]?.title?.type === "required" ? s.error : s.input} name={`title[${index}]`} 
+                    <input  className={errors?.pricing && errors?.pricing[index]?.title?.type === "required" ? s.error : s.input} name={`title[${index}]`} 
                 {...register(`pricing[${index}].title`,  {required: true, maxLength: 100 })} placeholder='Услуга' type="text" defaultValue={field.title} />
                 {errors?.pricing && errors?.pricing[index]?.title?.type === "required" && <span className={s.errorSpan}>Поле обязательно к заполнению</span>}
                 </div>
@@ -68,7 +68,7 @@ const PriceBlockForm = (props) => {
         </form>
    
     
-        <button type='submit' form='editPrice' className={s.button}>{isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  }</button>
+        <button type='submit' disabled={isFetchingStatus} form='editPrice' className={s.button}>{isFetchingStatus ?   <img src={smallPreloader} alt="" /> : "Сохранить"  }</button>
     </div>)
 }
 

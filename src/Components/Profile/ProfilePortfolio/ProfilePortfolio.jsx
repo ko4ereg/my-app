@@ -43,7 +43,7 @@ const ProfilePortfolio = (props) => {
 
     const handleDeleteImage = () => {
         const deletedImageUrl = imagesArray[currentImageIndex];
-        console.log(deletedImageUrl);
+ 
         const updatedImages = [...images];
         updatedImages.splice(currentImageIndex, 1);
         if (currentImageIndex === images.length - 1) {
@@ -52,7 +52,7 @@ const ProfilePortfolio = (props) => {
         if ( updatedImages.length === 0) {
             setModalGalleryActive(false);
         }
-        console.log(updatedImages);
+ 
         dispatch(updatePortfolioPhoto(updatedImages, props.props.id, deletedImageUrl));
     }
 
@@ -71,10 +71,11 @@ const ProfilePortfolio = (props) => {
    }
 
     return (  <div className={s.profilePortfolio}>
-        <TitleBlock isOwner={props.isOwner} onPhotoPortfolioSelected={onPhotoPortfolioSelected} />
+        <TitleBlock  portfolio={props.props.portfolio}  isOwner={props.isOwner} onPhotoPortfolioSelected={onPhotoPortfolioSelected} />
         <PortfolioBlock isOwner={props.isOwner} modalGalleryActive={modalGalleryActive} 
         setModalGalleryActive={setModalGalleryActive} 
         portfolio={props.props.portfolio} 
+        pricing={props.props.pricing}
         handleClick={handleClick}
         onPhotoPortfolioSelected={onPhotoPortfolioSelected} /> 
         <ModalGallery setActive={setModalGalleryActive} active={modalGalleryActive}>

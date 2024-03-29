@@ -12,6 +12,10 @@ color: #1F1F1F;
 margin-bottom: 32px;
 }
 
+.profileContainer{
+    margin-left: 32px;
+}
+
 .info{
     display: flex;
     flex-direction: column;
@@ -40,6 +44,11 @@ line-height: 20px;
  
 .city{
     color: #474747;
+    text-transform: capitalize;
+}
+
+.typeservice{
+    text-transform: capitalize;
 }
  
 .dot {
@@ -136,8 +145,11 @@ width: fit-content;
     fill:  #474747;
    }
 
-   .profile button{
-  
+  .button{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 4px;
    }
 
    .emptyProfile img{
@@ -166,12 +178,13 @@ position: relative;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 144px;
+    height: 144px;
     opacity: 0;
     background-color: #EBEBEB;
     transition: opacity 0.3s ease;
     cursor: pointer;
+    border-radius: 50%;
 }
 .mainPhotoContainer:hover .overlay {
     opacity: 1;

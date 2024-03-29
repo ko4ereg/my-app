@@ -7,7 +7,7 @@ const Header = (props) => {
     return ( <header>
         <div className={s.header}><img className={s.logo} src={logo} alt="" />
        
-       <HeaderNavMenu />
+       <HeaderNavMenu handleKeyPress={props.handleKeyPress} querySearch={props.querySearch} handleInputChange={props.handleInputChange} />
        <HeaderLoginContainer />
       </div>
         </header>)

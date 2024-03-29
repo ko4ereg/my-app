@@ -1,0 +1,260 @@
+.wrapper{
+  background-color: #fff;
+}
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* margin-bottom: 16px; */
+}
+
+.header {
+  display: flex;
+  gap: 8px;
+position: relative;
+}
+ 
+.img {
+ 
+   max-height: 255px;
+   min-width: 100%;
+   object-fit: cover;	
+   cursor: pointer;
+}
+ 
+.item {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 16px 24px 16px 24px;
+  width: 560px;
+}
+.item:last-child {
+  margin-bottom: 100px;
+   border-bottom: none
+ }
+.authorPic img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.creator {
+  display: flex;
+  gap: 8px;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999999;
+}
+
+.service {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+.text {
+  width: 100%;
+  max-height: 130px;
+  position: relative;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  position: relative;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+}
+
+
+.textBottom {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 46.9%, #FFF 100%);
+  width: 100%;
+  height: 1.5rem;
+  opacity: 1;
+  transition: 0.3s;
+
+}
+.textBlock{
+  margin-bottom: 0px;
+}
+.readmorechecker {
+  opacity: 0;
+  position: absolute;
+}
+
+.readmorebutton{
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: left;
+  width: fit-content;
+  text-wrap: nowrap;
+  position: absolute;
+  color: #999999;
+}
+
+.readmorechecker:checked ~ .text {
+  max-height:  none;
+}
+
+.readmorechecker:checked ~ .text .textBottom {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.readmorechecker ~ .readmorebutton::before {
+  content: "Читать полностью";
+  position: absolute;
+  width: fit-content;
+  left: 0;
+}
+
+ 
+.readmorechecker:checked ~ .readmorebutton {
+  width: fit-content;
+}
+
+.readmorechecker:checked ~ .readmorebutton:before {
+  content: "Скрыть";
+  position: absolute;
+  left: 0;
+}
+ 
+
+
+.title{
+
+font-size: 20px;
+font-weight: 700;
+line-height: 24px;
+}
+
+
+
+.comment {
+font-size: 14px;
+font-weight: 700;
+line-height: 16px;
+display: flex;
+gap: 8px;
+}
+.comment span {
+  font-weight: 500; 
+}
+
+.commentsBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.commentsBlock input{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+ .label{
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0px 8px 0px;
+  
+  font-weight: 500;
+  position: relative;
+}
+
+ 
+.input::placeholder{
+  color: #C2C2C2;
+}
+
+.input:hover, .input:focus{
+  background-color: #fff;
+}
+ .emoji{
+  cursor: pointer;
+ }
+ .emojiContainer{
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+ }
+.send{
+  cursor: pointer;
+}
+ 
+
+.sendDisabled{
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+.inputdisabled{
+  color: #999999;
+}
+
+.menuIcon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.dropdown{
+  list-style-type: none;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 152px;
+  background-color: #fff;
+  z-index: 1;
+  box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.1), 0px 0px 4px 0px rgba(0, 0, 0, 0.04);
+padding: 0px;
+font-size: 14px;
+font-weight: 400;
+line-height: 16px;
+}
+
+.dropdownItem{
+  padding: 8px 8px;
+  display: flex;
+  align-items: center;
+cursor: pointer;
+  gap: 8px;
+}
+
+.dropdown:hover{
+border-radius: 4px;
+ 
+}
+.dropdownItem:hover{
+  background-color: #F9F7F2;
+}
+.dropdownItem:hover:first-child {
+  border-radius: 4px 4px 0px 0px;
+}
+.dropdownItem:hover:last-child {
+  border-radius: 0px 0px 4px 4px;
+}
