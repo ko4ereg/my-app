@@ -47,7 +47,7 @@ function App() {
  
 
   return (
-    <HashRouter>
+    <BrowserRouter>
     
       
       <div className='app-wrapper'>
@@ -77,7 +77,7 @@ function App() {
         </div>
         {pathName !== 'login' && pathName !== 'resetpassword' && pathName !== 'registrate' ?  <Footer/> : null}
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
