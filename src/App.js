@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes,   } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Route, Routes,   } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer/Footer';
 import HeaderContainer from './Components/Header/HeaderContainer';
@@ -47,17 +47,17 @@ function App() {
  
 
   return (
-    <BrowserRouter>
+    <HashRouter>
     
       
       <div className='app-wrapper'>
-      {pathName !== '/login' && pathName !== '/registrate' && pathName !== '/resetpassword'   ?  <HeaderContainer /> : null}
+      {pathName !== 'login' && pathName !== 'registrate' && pathName !== 'resetpassword'   ?  <HeaderContainer /> : null}
       <Routes>
              
               
-                <Route path="/login" element={<LoginContainer />} />
-                <Route path="/registrate" element={<RegistrateContainer  />} />
-                <Route path="/resetpassword" element={<ResetPasswordContainer  />} />
+                <Route path="login" element={<LoginContainer />} />
+                <Route path="registrate" element={<RegistrateContainer  />} />
+                <Route path="resetpassword" element={<ResetPasswordContainer  />} />
             
               </Routes>
         <div className='container'>
@@ -65,19 +65,19 @@ function App() {
           <div className='app-wrapper-content'>
             <Suspense fallback={<Preloader />}>
               <Routes>
-              <Route path="/" element={<Navigate to="/blog" />} />
-                <Route path="/profile/:userId?" element={<ProfileContainer />} />
-                <Route path="/blog" element={<BlogContainer />} />
-                <Route path="/masters" element={<MastersContainer />} />
-                <Route path="/search*" element={<SearchContainer />} />
+              <Route path="" element={<Navigate to="/blog" />} />
+                <Route path="profile/:userId?" element={<ProfileContainer />} />
+                <Route path="blog" element={<BlogContainer />} />
+                <Route path="masters" element={<MastersContainer />} />
+                <Route path="search*" element={<SearchContainer />} />
                 <Route element={<Footer />}/>
               </Routes>
             </Suspense>
           </div>
         </div>
-        {pathName !== '/login' && pathName !== '/resetpassword' && pathName !== '/registrate' ?  <Footer/> : null}
+        {pathName !== 'login' && pathName !== 'resetpassword' && pathName !== 'registrate' ?  <Footer/> : null}
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

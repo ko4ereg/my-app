@@ -56,15 +56,16 @@ const BlogHeaderLenta = (props) => {
                     {category === 'MyPosts' ? 'Мои посты' : selectedItem}  <img className={s.arrowpic} src={props.isOpen ? arrowUp : arrowDown} alt="" />
                     {props.isOpen &&
                         <ul className={s.dropdown}>
-                            <li className={selectedItem === 'Вся лента' && category === null ? s.dropdownItem + ' ' + s.disabled : s.dropdownItem}
+                            
+                            <li className={category  ? s.dropdownItem : s.dropdownItem + ' ' + s.disabled  }
                                 onClick={() => { handleAllPosts('Вся лента'); handleItemClick('Вся лента'); }}>Вся лента</li>
                             <li className={selectedItem === 'Мои посты' || category === 'MyPosts' ? s.dropdownItem + ' ' + s.disabled : s.dropdownItem}
                                 onClick={() => { handleSortMyPosts(); handleItemClick('Мои посты'); }}>Мои посты</li>
                         </ul>}
                 </div>
-                : <div className={selectedItem === 'Вся лента' ? s.dropdownItem + ' ' + s.disabled : s.dropdownItem}
+                : <div className={category  ? s.dropdownItem : s.dropdownItem + ' ' + s.disabled }
                 onClick={() => { handleAllPosts('Вся лента'); handleItemClick('Вся лента'); }}>Вся лента</div> }
-            {categories.map((item, index) => <div key={index} onClick={() => { handleSortCategoryPosts(item); handleCategoryClick(item) }} className={selectedCategory === item ? s.item + ' ' + s.disabled : s.item}  >{item}</div>)}
+            {categories.map((item, index) => <div key={index} onClick={() => { handleSortCategoryPosts(item); handleCategoryClick(item) }} className={category === item ? s.item + ' ' + s.disabled : s.item}  >{item}</div>)}
 
         </div>)
 }
