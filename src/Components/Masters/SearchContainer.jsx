@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import {  useDispatch, useSelector } from 'react-redux';
 import s from './Masters.module.css';
-import { getUsersWithPagination, requestUsers, requestUsersTotalCount, sendQuerySearch, setCurrentPage, setSearchedUsersNull, setUsersNull, toggleFollowingProgress } from '../../redux/masters-reducer';
-import Preloader from '../common/Preloader/Preloader';
+import {  sendQuerySearch, setCurrentPage, setSearchedUsersNull, setUsersNull, toggleFollowingProgress } from '../../redux/masters-reducer';
 import Masters from './Masters';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PreloaderMasters from '../common/Preloader/PreloaderMasters';
 import { useLocation } from 'react-router-dom';
+import SkeletonMasters from './SkeletonMasters';
 
 
 const SearchContainer = () => {
@@ -25,7 +25,6 @@ const SearchContainer = () => {
 
 
  useEffect(() => {
-  console.log(1);
   dispatch(sendQuerySearch(querySearch.toLowerCase().trim())).then((response) => {
     setData(response);
   })
@@ -53,10 +52,16 @@ const SearchContainer = () => {
 
   // };
 
- if (isFetchingStatus) {
-  return <Preloader />
- }
-  
+  if (isFetchingStatus) {
+    return <div className={s.wrapper}>
+      <span className={s.title}>Доступные специалисты</span>
+      < SkeletonMasters />
+      < SkeletonMasters />
+      < SkeletonMasters />
+      < SkeletonMasters />
+      < SkeletonMasters />
+    </div>
+  }
   return (
     <div className={s.scroll} 
     // onScroll={handleScroll}

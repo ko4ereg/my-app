@@ -10,7 +10,7 @@ const LoginContainer = (props) => {
     const isAuth = useSelector(state => state.auth.isAuth);
     const dispatch = useDispatch();
     const [errorMessage, setErrorMessage] = useState('');
-  
+  console.log(window.location);
     const  handleLogin = (email, password) => {
         dispatch(login(email, password))
         .catch((error) => {

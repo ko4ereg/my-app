@@ -15,7 +15,11 @@ color: #707070;
     text-decoration: none;
     color: #474747;
   }
-
+.disabled{
+  color: #707070;
+  text-decoration: none;
+  cursor: none;
+}
   .label{
     height: 32px;
     display: flex;

@@ -13,7 +13,7 @@ const HeaderNavMenu = (props) => {
        <div className={s.link} ><NavLink className={s.link} to={"/masters"}>Специалисты</NavLink></div> 
        <div className={s.link}   > <NavLink className={s.link} to={"/blog"}>Лента</NavLink>    </div>
         
-        <div className={s.link}>О проекте</div>
+        <div className={s.link + '' + s.disabled}>О проекте</div>
     </div>
     )
 }

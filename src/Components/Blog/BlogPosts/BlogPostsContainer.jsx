@@ -1,10 +1,8 @@
-
 import { useDispatch, useSelector } from 'react-redux';
 import s from './../Blog.module.css';
 import Posts from './Posts';
 import { getPostsWithPagination, requestPosts, requestPostsTotalCount, setCurrentPage, setPosts, setPostsNull } from '../../../redux/posts-reducer';
 import { useEffect, useState } from 'react';
-import Preloader from '../../common/Preloader/Preloader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PreloaderMasters from '../../common/Preloader/PreloaderMasters';
 import SkeletonPost from './SkeletonPost';
@@ -27,7 +25,6 @@ const BlogPostsContainer = (props) => {
       setData(response);
     })
     return function () {
-      console.log('disappear');
       setData(postsData);
       dispatch(setPostsNull());
       dispatch(setCurrentPage(1));
@@ -46,10 +43,7 @@ useEffect(() => {
   setData(postsData);
 }, [postsData]);
 
-const refreshPosts = () => {
-  setData(postsData);
-}
-
+ 
   const fetchMoreData = () => {
     if (currentPage < totalPostsCount / pageSize) {
       const newPage = currentPage + 1;

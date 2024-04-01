@@ -102,6 +102,9 @@ export const Post = (props) => {
         dispatch(setPostNotShow(props.post.id, userId));
     }
 
+    const lines = props.post.text.split('<br>');
+   
+
     const formattedText = (props.post.text).replace(/<br>/g, "\n");
 
     return <div className={s.item} key={props.post.id}>
@@ -143,9 +146,11 @@ export const Post = (props) => {
                 <input id={`readmore${props.id}`} type="checkbox" className={s.readmorechecker} />
                 <div className={s.text} >
                     {formattedText}
-                    {props.post.text.length > 300 && <div className={s.textBottom} ></div>}
+                    {lines.length > 6 && <div className={s.textBottom} ></div>}
+                    {/* { props.post.text.length > 300 && <div className={s.textBottom} ></div>} */}
                 </div>
-                {props.post.text.length > 300 && <label htmlFor={`readmore${props.id}`} className={s.readmorebutton} ></label>}
+                {lines.length > 6 && <label htmlFor={`readmore${props.id}`} className={s.readmorebutton} ></label>}
+                {/* {props.post.text.length > 300 && <label htmlFor={`readmore${props.id}`} className={s.readmorebutton} ></label>} */}
             </div>
             <ImageList variant='standart' cols={2} gap={2}>
                 {props.post.pictures.map((photo, index) => {

@@ -1,5 +1,4 @@
 import  Master  from './Master';
-import Paginator from './Paginator';
 import s from './Masters.module.css';
 
 
