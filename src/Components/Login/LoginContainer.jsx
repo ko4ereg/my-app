@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./Login";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,16 @@ const LoginContainer = (props) => {
         });
     
     }
+
+    useEffect(() => {
+     
+            document.body.style.overflow = "hidden";
+
+            return () => {
+                document.body.style.overflow = "auto";
+            }
+        
+    }, []);
 
     if (isAuth) {
         window.location.replace('/profile');

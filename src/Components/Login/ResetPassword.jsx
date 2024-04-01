@@ -13,9 +13,7 @@ const ResetPassword = (props) => {
   const isFetchingStatus = useSelector(state => state.profilePage.isFetchingForm);
   const [errorMessage, setErrorMessage] = useState('');
 
- 
-      
- 
+   
 
   const submit = data => {
     const email = data.email.trim();

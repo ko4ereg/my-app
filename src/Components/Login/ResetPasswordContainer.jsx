@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  resetPassword } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
@@ -9,7 +9,16 @@ const ResetPasswordContainer = (props) => {
     const isAuth = useSelector(state => state.auth.isAuth);
     const dispatch = useDispatch();
     const [errorMessage, setErrorMessage] = useState('');
-  
+    
+    useEffect(() => {
+     
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        }
+    
+}, []);
     const handleReset = (email ) => {
         dispatch(resetPassword(email))
         .catch((error) => {

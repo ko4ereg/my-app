@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registrate } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
 import Registrate from "./Registrate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const RegistrateContainer = (props) => {
@@ -19,7 +19,15 @@ const RegistrateContainer = (props) => {
             setErrorMessage(errorMessage);
         });
     }
+    useEffect(() => {
+     
+        document.body.style.overflow = "hidden";
 
+        return () => {
+            document.body.style.overflow = "auto";
+        }
+    
+}, []);
     if (isAuth) {
         window.location.replace('/profile');
         setTimeout(() => {
