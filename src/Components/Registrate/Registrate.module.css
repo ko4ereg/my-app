@@ -10,11 +10,15 @@
 } */
 
 .picture {
-  object-fit: cover;
-  min-width: 50%;
-  overflow: hidden;
-}
+  object-fit: contain;
+   width: 50%;
+   height: 100vh;
 
+}
+.picture img{
+ height: 100%;
+}
+ 
 
 .loginBlock {
   display: flex;

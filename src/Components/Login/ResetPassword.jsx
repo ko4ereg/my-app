@@ -1,28 +1,20 @@
 import { useForm } from "react-hook-form";
-// import s from './../Profile/ProfileDataForm/ProfileDataForm.module.css';
 import s from './Login.module.css';
 import pictureBack from './../../assets/loginback.png';
 import logo from './../../assets/logo.svg';
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import smallPreloader from './../../assets/preloaderSmall.svg';
 
 const ResetPassword = (props) => {
-  const { register, reset, handleSubmit, clearErrors, formState: { errors } } = useForm({ mode: 'onBlur', });
-  const isFetchingStatus = useSelector(state => state.profilePage.isFetchingForm);
-  const [errorMessage, setErrorMessage] = useState('');
-
-   
+  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', });
+  const isFetchingStatus = useSelector(state => state.profilePage.isFetchingForm); 
 
   const submit = data => {
     const email = data.email.trim();
     props.handleReset(email);
-    
   }
- 
   
-
   return (
     <div className={s.wrapper}>
       <div className={s.picture}> <img src={pictureBack} alt="" /></div>
